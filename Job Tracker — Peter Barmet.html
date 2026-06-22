@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Tracker — Peter Barmet</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:     #0D0D0D;
+  --ink-2:   #4A4A4A;
+  --ink-3:   #9A9A9A;
+  --rule:    #E8E8E8;
+  --surface: #FFFFFF;
+  --bg:      #F7F7F5;
+  --accent:  #0A5C3C;
+  --acc-2:   #E8F2EC;
+  --acc-3:   #B8D9C5;
+  --warn:    #C45000;
+  --warn-2:  #FFF0E6;
+  --r:       8px;
+  --r-sm:    5px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.topbar {
+  background: var(--ink);
+  color: #fff;
+  padding: 0 2rem;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.topbar-left { display: flex; align-items: center; gap: 12px; }
+
+.topbar-logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+.topbar-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #4ADE80;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+.topbar-right { display: flex; gap: 8px; align-items: center; }
+
+.topbar-stat {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  padding: 4px 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 999px;
+}
+.topbar-stat span { color: #fff; font-weight: 500; }
+
+.page { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+
+.page-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.page-title { font-size: 26px; font-weight: 600; letter-spacing: -0.5px; }
+.page-sub { font-size: 13px; color: var(--ink-3); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+.header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: var(--r-sm);
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+  cursor: pointer; border: 1px solid var(--rule);
+  background: var(--surface); color: var(--ink);
+  transition: all 0.15s; white-space: nowrap;
+}
+.btn:hover { background: #F0F0EE; border-color: #D0D0D0; }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-primary:hover { background: #084D32; border-color: #084D32; }
+.btn-ghost { background: transparent; border-color: transparent; color: var(--ink-2); }
+.btn-ghost:hover { background: var(--rule); border-color: var(--rule); }
+.btn-sm { padding: 6px 10px; font-size: 12px; }
+
+.status-bar {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--r);
+  margin-bottom: 1.25rem;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+.status-bar.info { background: var(--acc-2); border: 1px solid var(--acc-3); color: var(--accent); }
+.status-bar.error { background: var(--warn-2); border: 1px solid #F0C0A0; color: var(--warn); }
+.status-bar.loading { background: #F0F0EE; border: 1px solid var(--rule); color: var(--ink-2); }
+
+.spinner {
+  width: 14px; height: 14px;
+  border: 2px solid rgba(0,0,0,0.1);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.toolbar { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; align-items: center; }
+
+.search-wrap { flex: 1; min-width: 200px; position: relative; }
+.search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--ink-3); font-size: 14px; pointer-events: none; }
+.search-input {
+  width: 100%; padding: 9px 14px 9px 34px;
+  background: var(--surface); border: 1px solid var(--rule);
+  border-radius: var(--r-sm); font-family: 'Inter', sans-serif;
+  font-size: 14px; color: var(--ink); outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(10,92,60,0.08); }
+.search-input::placeholder { color: var(--ink-3); }
+
+.filter-row { display: flex; gap: 4px; margin-bottom: 1.25rem; align-items: center; }
+.filter-tab {
+  padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 500;
+  cursor: pointer; border: 1px solid transparent; background: transparent;
+  color: var(--ink-3); font-family: 'Inter', sans-serif; transition: all 0.15s;
+}
+.filter-tab:hover { background: var(--rule); color: var(--ink-2); }
+.filter-tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+.filter-count {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  padding: 1px 5px; border-radius: 999px; background: rgba(255,255,255,0.2); margin-left: 2px;
+}
+.filter-tab:not(.active) .filter-count { background: var(--rule); color: var(--ink-3); }
+
+.add-panel {
+  background: var(--surface); border: 1px solid var(--rule);
+  border-radius: var(--r); padding: 1.25rem;
+  margin-bottom: 1.25rem; display: none; flex-direction: column; gap: 12px;
+}
+.add-panel.open { display: flex; }
+
+.form-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.form-field { flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 5px; }
+.field-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink-3); }
+.field-input {
+  padding: 8px 11px; background: var(--bg); border: 1px solid var(--rule);
+  border-radius: var(--r-sm); font-family: 'Inter', sans-serif;
+  font-size: 13px; color: var(--ink); outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.field-input:focus { border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 3px rgba(10,92,60,0.08); }
+.field-input::placeholder { color: var(--ink-3); }
+.form-actions { display: flex; gap: 8px; }
+
+.company-list { display: flex; flex-direction: column; gap: 2px; }
+
+.company-row {
+  background: var(--surface); border: 1px solid var(--rule);
+  border-radius: var(--r); padding: 1rem 1.25rem;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 16px; align-items: center;
+  transition: border-color 0.15s, transform 0.1s, box-shadow 0.15s;
+}
+.company-row:hover { border-color: #D0D0D0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transform: translateY(-1px); }
+.company-row.visited { border-left: 3px solid var(--accent); }
+
+.row-left { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.row-indicator { width: 7px; height: 7px; border-radius: 50%; background: var(--rule); flex-shrink: 0; border: 1.5px solid #C8C8C8; transition: all 0.2s; }
+.visited .row-indicator { background: var(--accent); border-color: var(--accent); }
+.row-info { min-width: 0; }
+.row-name { font-size: 14px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: -0.1px; }
+.row-meta { display: flex; align-items: center; gap: 8px; margin-top: 3px; flex-wrap: wrap; }
+.row-sector { font-size: 12px; color: var(--ink-3); }
+.row-note { font-size: 11px; color: var(--ink-3); font-family: 'JetBrains Mono', monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 260px; }
+.visited-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; color: var(--accent); background: var(--acc-2); padding: 2px 8px; border-radius: 999px; font-family: 'JetBrains Mono', monospace; }
+
+.row-actions { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
+.icon-btn { width: 30px; height: 30px; border-radius: var(--r-sm); border: 1px solid transparent; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--ink-3); font-size: 14px; transition: all 0.15s; }
+.icon-btn:hover { background: var(--bg); border-color: var(--rule); color: var(--ink); }
+.icon-btn.del:hover { background: var(--warn-2); color: var(--warn); border-color: #F0C0A0; }
+.visit-btn { font-size: 12px; padding: 6px 12px; border-radius: var(--r-sm); }
+
+.modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(13,13,13,0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 100; align-items: center; justify-content: center; padding: 1.5rem; }
+.modal-backdrop.open { display: flex; }
+.modal { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r); padding: 1.5rem; width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); animation: modal-in 0.2s ease; }
+@keyframes modal-in { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+.modal-title { font-size: 16px; font-weight: 600; letter-spacing: -0.2px; }
+.modal-actions { display: flex; gap: 8px; margin-top: 4px; }
+
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: var(--ink-3); padding: 1rem 0 0.5rem; display: flex; align-items: center; gap: 8px; }
+.section-label::after { content:''; flex:1; height:1px; background:var(--rule); }
+
+.empty { text-align: center; padding: 4rem 0; color: var(--ink-3); }
+.empty-icon { font-size: 32px; margin-bottom: 1rem; opacity: 0.4; }
+.empty-title { font-size: 15px; font-weight: 500; color: var(--ink-2); margin-bottom: 6px; }
+.empty-sub { font-size: 13px; }
+
+@media (max-width: 580px) {
+  .topbar { padding: 0 1rem; }
+  .company-row { grid-template-columns: 1fr; }
+  .page { padding: 1.25rem 1rem 4rem; }
+  .page-header { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-dot"></div>
+    <span class="topbar-logo">JOB TRACKER — PETER BARMET</span>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-stat">Gesamt <span id="statTotal">0</span></div>
+    <div class="topbar-stat">Besucht <span id="statVisited">0</span></div>
+    <div class="topbar-stat">Offen <span id="statOpen">0</span></div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Karriereseiten</h1>
+      <p class="page-sub">Wöchentlich durchgehen · neue Stellen nicht verpassen</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn" onclick="loadData()" id="refreshBtn">↺ Aktualisieren</button>
+      <button class="btn btn-primary" onclick="toggleAdd()" id="addBtn">+ Unternehmen</button>
+    </div>
+  </div>
+
+  <div id="statusBar" class="status-bar loading" style="display:none"></div>
+
+  <div class="add-panel" id="addPanel">
+    <div class="form-row">
+      <div class="form-field">
+        <label class="field-label">Unternehmen *</label>
+        <input class="field-input" type="text" id="newName" placeholder="z.B. Nestlé" />
+      </div>
+      <div class="form-field">
+        <label class="field-label">Branche</label>
+        <input class="field-input" type="text" id="newSector" placeholder="z.B. Konsumgüter" />
+      </div>
+    </div>
+    <div class="form-field">
+      <label class="field-label">Karriereseite URL *</label>
+      <input class="field-input" type="url" id="newUrl" placeholder="https://…" />
+    </div>
+    <div class="form-field">
+      <label class="field-label">Notiz</label>
+      <input class="field-input" type="text" id="newNote" placeholder="z.B. SAP-Umfeld, Finance-Team wächst" />
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" onclick="addCompany()" id="addSaveBtn">Hinzufügen</button>
+      <button class="btn btn-ghost" onclick="toggleAdd()">Abbrechen</button>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input class="search-input" type="text" id="search" placeholder="Unternehmen oder Branche suchen…" oninput="render()" />
+    </div>
+    <button class="btn btn-ghost btn-sm" onclick="resetVisited()">↺ Reset Besucht</button>
+  </div>
+
+  <div class="filter-row">
+    <button class="filter-tab active" onclick="setFilter('all',this)">Alle <span class="filter-count" id="fc-all">0</span></button>
+    <button class="filter-tab" onclick="setFilter('open',this)">Offen <span class="filter-count" id="fc-open">0</span></button>
+    <button class="filter-tab" onclick="setFilter('visited',this)">Besucht <span class="filter-count" id="fc-visited">0</span></button>
+  </div>
+
+  <div class="company-list" id="list"></div>
+</div>
+
+<!-- Edit modal -->
+<div class="modal-backdrop" id="editModal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <h2 class="modal-title">Eintrag bearbeiten</h2>
+    <div class="form-row">
+      <div class="form-field">
+        <label class="field-label">Unternehmen *</label>
+        <input class="field-input" type="text" id="editName" />
+      </div>
+      <div class="form-field">
+        <label class="field-label">Branche</label>
+        <input class="field-input" type="text" id="editSector" />
+      </div>
+    </div>
+    <div class="form-field">
+      <label class="field-label">URL *</label>
+      <input class="field-input" type="url" id="editUrl" />
+    </div>
+    <div class="form-field">
+      <label class="field-label">Notiz</label>
+      <input class="field-input" type="text" id="editNote" />
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" onclick="saveEdit()" id="editSaveBtn">Speichern</button>
+      <button class="btn btn-ghost" onclick="closeModal()">Abbrechen</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ───────────────────────────────────────────────────────────────────
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlsKp_3cBSq-gBONW-dN-f7XxT8Y3PAbb3xhHcPvXliTaKa-Wa1MibmuyCmQ82uRBBeQ/exec';
+// ─────────────────────────────────────────────────────────────────────────────
+
+let data   = [];
+let filter = 'all';
+let editId = null;
+
+// ── Status bar ──────────────────────────────────────────────────────────────
+function showStatus(msg, type='loading', spinner=false) {
+  const bar = document.getElementById('statusBar');
+  bar.className = `status-bar ${type}`;
+  bar.style.display = 'flex';
+  bar.innerHTML = (spinner ? '<div class="spinner"></div>' : '') + `<span>${msg}</span>`;
+}
+function hideStatus() { document.getElementById('statusBar').style.display = 'none'; }
+
+// ── Load from Sheets ────────────────────────────────────────────────────────
+async function loadData() {
+  showStatus('Daten werden geladen…', 'loading', true);
+  try {
+    const res  = await fetch(SCRIPT_URL);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const rows = await res.json();
+    // Skip header row
+    const dataRows = rows.slice(1);
+    data = dataRows.map(r => ({
+      id:      r[0] || '',
+      name:    r[1] || '',
+      sector:  r[2] || '',
+      url:     r[3] || '',
+      note:    r[4] || '',
+      visited: r[5] || null,
+    })).filter(c => c.name);
+    hideStatus();
+    render();
+  } catch(e) {
+    showStatus(`Fehler beim Laden: ${e.message}`, 'error');
+  }
+}
+
+// ── Write row to Sheets ─────────────────────────────────────────────────────
+async function writeAll() {
+  const values = data.map(c => [c.id, c.name, c.sector, c.url, c.note, c.visited || '']);
+  const res = await fetch(SCRIPT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(values),
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const json = await res.json();
+  if (json.status !== 'ok') throw new Error('Script Fehler');
+}
+
+// ── Generate ID ─────────────────────────────────────────────────────────────
+function genId() { return Date.now().toString(36); }
+
+// ── Add ─────────────────────────────────────────────────────────────────────
+async function addCompany() {
+  const name = document.getElementById('newName').value.trim();
+  const url  = document.getElementById('newUrl').value.trim();
+  if (!name || !url) { alert('Name und URL sind Pflichtfelder.'); return; }
+
+  const btn = document.getElementById('addSaveBtn');
+  btn.disabled = true; btn.textContent = 'Speichern…';
+  showStatus('Eintrag wird gespeichert…', 'loading', true);
+
+  data.push({
+    id: genId(), name,
+    sector: document.getElementById('newSector').value.trim(),
+    url,
+    note: document.getElementById('newNote').value.trim(),
+    visited: null,
+  });
+
+  try {
+    await writeAll();
+    hideStatus();
+    ['newName','newSector','newUrl','newNote'].forEach(id=>document.getElementById(id).value='');
+    toggleAdd();
+    render();
+  } catch(e) {
+    showStatus(`Fehler beim Speichern: ${e.message}`, 'error');
+    data.pop();
+  }
+  btn.disabled = false; btn.textContent = 'Hinzufügen';
+}
+
+// ── Mark visited ─────────────────────────────────────────────────────────────
+async function markVisited(id) {
+  const c = data.find(x=>x.id===id);
+  if (!c) return;
+  c.visited = new Date().toISOString();
+  render();
+  try {
+    await writeAll();
+  } catch(e) {
+    showStatus(`Besucht konnte nicht gespeichert werden: ${e.message}`, 'error');
+  }
+}
+
+// ── Remove ───────────────────────────────────────────────────────────────────
+async function removeCompany(id) {
+  if (!confirm('Eintrag entfernen?')) return;
+  const prev = [...data];
+  data = data.filter(x=>x.id!==id);
+  render();
+  try {
+    await writeAll();
+  } catch(e) {
+    showStatus(`Fehler beim Löschen: ${e.message}`, 'error');
+    data = prev; render();
+  }
+}
+
+// ── Reset visited ────────────────────────────────────────────────────────────
+async function resetVisited() {
+  if (!confirm('Alle Besucht-Markierungen zurücksetzen?')) return;
+  data.forEach(c=>c.visited=null);
+  render();
+  try { await writeAll(); } catch(e) { showStatus(`Fehler: ${e.message}`, 'error'); }
+}
+
+// ── Edit modal ───────────────────────────────────────────────────────────────
+function openEdit(id) {
+  const c = data.find(x=>x.id===id);
+  if (!c) return;
+  editId = id;
+  document.getElementById('editName').value   = c.name;
+  document.getElementById('editSector').value = c.sector||'';
+  document.getElementById('editUrl').value    = c.url;
+  document.getElementById('editNote').value   = c.note||'';
+  document.getElementById('editModal').classList.add('open');
+  setTimeout(()=>document.getElementById('editName').focus(),50);
+}
+
+function closeModal() { editId=null; document.getElementById('editModal').classList.remove('open'); }
+function closeModalOutside(e) { if(e.target===document.getElementById('editModal')) closeModal(); }
+
+async function saveEdit() {
+  const name = document.getElementById('editName').value.trim();
+  const url  = document.getElementById('editUrl').value.trim();
+  if (!name||!url) { alert('Name und URL sind Pflichtfelder.'); return; }
+
+  const btn = document.getElementById('editSaveBtn');
+  btn.disabled=true; btn.textContent='Speichern…';
+  showStatus('Änderungen werden gespeichert…','loading',true);
+
+  const c = data.find(x=>x.id===editId);
+  if (c) {
+    c.name   = name;
+    c.sector = document.getElementById('editSector').value.trim();
+    c.url    = url;
+    c.note   = document.getElementById('editNote').value.trim();
+    try {
+      await writeAll();
+      hideStatus(); render(); closeModal();
+    } catch(e) {
+      showStatus(`Fehler: ${e.message}`,'error');
+    }
+  }
+  btn.disabled=false; btn.textContent='Speichern';
+}
+
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+// ── UI helpers ───────────────────────────────────────────────────────────────
+function toggleAdd() {
+  const p = document.getElementById('addPanel');
+  const isOpen = p.classList.toggle('open');
+  document.getElementById('addBtn').textContent = isOpen ? '✕ Schliessen' : '+ Unternehmen';
+  if (isOpen) setTimeout(()=>document.getElementById('newName').focus(),50);
+}
+
+function setFilter(f,el) {
+  filter=f;
+  document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  render();
+}
+
+function fmt(iso) {
+  if (!iso) return '';
+  return new Date(iso).toLocaleDateString('de-CH',{day:'2-digit',month:'2-digit',year:'numeric'});
+}
+
+// ── Render ───────────────────────────────────────────────────────────────────
+function render() {
+  const q = document.getElementById('search').value.toLowerCase();
+  let filtered = data.filter(c=>c.name.toLowerCase().includes(q)||(c.sector||'').toLowerCase().includes(q));
+
+  const all=filtered.length, vis=filtered.filter(c=>c.visited).length, open=all-vis;
+  document.getElementById('fc-all').textContent=all;
+  document.getElementById('fc-open').textContent=open;
+  document.getElementById('fc-visited').textContent=vis;
+  document.getElementById('statTotal').textContent=data.length;
+  document.getElementById('statVisited').textContent=data.filter(c=>c.visited).length;
+  document.getElementById('statOpen').textContent=data.filter(c=>!c.visited).length;
+
+  if (filter==='visited') filtered=filtered.filter(c=>c.visited);
+  if (filter==='open')    filtered=filtered.filter(c=>!c.visited);
+
+  filtered.sort((a,b)=>{
+    if(!!a.visited!==!!b.visited) return a.visited?1:-1;
+    return a.name.localeCompare(b.name,'de');
+  });
+
+  const list=document.getElementById('list');
+  if (!filtered.length) {
+    list.innerHTML=`<div class="empty"><div class="empty-icon">◎</div><div class="empty-title">Keine Einträge gefunden</div><div class="empty-sub">Passe die Suche an oder füge ein neues Unternehmen hinzu.</div></div>`;
+    return;
+  }
+
+  const openItems=filtered.filter(c=>!c.visited);
+  const visItems =filtered.filter(c=>c.visited);
+  let html='';
+
+  if (openItems.length && visItems.length) html+=`<div class="section-label">Noch nicht besucht — ${openItems.length}</div>`;
+  openItems.forEach(c=>{ html+=rowHTML(c); });
+  if (visItems.length && openItems.length) html+=`<div class="section-label">Besucht — ${visItems.length}</div>`;
+  visItems.forEach(c=>{ html+=rowHTML(c); });
+
+  list.innerHTML=html;
+}
+
+function rowHTML(c) {
+  return `
+    <div class="company-row ${c.visited?'visited':''}">
+      <div class="row-left">
+        <div class="row-indicator"></div>
+        <div class="row-info">
+          <div class="row-name">${c.name}</div>
+          <div class="row-meta">
+            ${c.sector?`<span class="row-sector">${c.sector}</span>`:''}
+            ${c.visited?`<span class="visited-badge">✓ ${fmt(c.visited)}</span>`:''}
+            ${c.note?`<span class="row-note">— ${c.note}</span>`:''}
+          </div>
+        </div>
+      </div>
+      <div class="row-actions">
+        <a href="${c.url}" target="_blank" rel="noopener"
+           class="btn btn-primary visit-btn"
+           onclick="markVisited('${c.id}')">↗ Öffnen</a>
+        <button class="icon-btn" onclick="openEdit('${c.id}')" title="Bearbeiten">✎</button>
+        <button class="icon-btn del" onclick="removeCompany('${c.id}')" title="Entfernen">✕</button>
+      </div>
+    </div>`;
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+loadData();
+</script>
+</body>
+</html>
