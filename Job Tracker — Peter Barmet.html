@@ -374,14 +374,14 @@ async function loadData() {
 // ── Write row to Sheets ─────────────────────────────────────────────────────
 async function writeAll() {
   const values = data.map(c => [c.id, c.name, c.sector, c.url, c.note, c.visited || '']);
-  const res = await fetch(SCRIPT_URL, {
+  const formData = new FormData();
+  formData.append('data', JSON.stringify(values));
+  await fetch(SCRIPT_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(values),
+    mode: 'no-cors',
+    body: formData,
   });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const json = await res.json();
-  if (json.status !== 'ok') throw new Error('Script Fehler');
+  // no-cors: opaque response, can't check status but request is sent
 }
 
 // ── Generate ID ─────────────────────────────────────────────────────────────
@@ -407,13 +407,16 @@ async function addCompany() {
 
   try {
     await writeAll();
-    hideStatus();
     ['newName','newSector','newUrl','newNote'].forEach(id=>document.getElementById(id).value='');
     toggleAdd();
     render();
+    // Auto-refresh nach 2 Sekunden um Speicherung zu bestätigen
+    showStatus('Gespeichert – wird bestätigt…', 'info', true);
+    setTimeout(async () => { await loadData(); hideStatus(); }, 2000);
   } catch(e) {
     showStatus(`Fehler beim Speichern: ${e.message}`, 'error');
     data.pop();
+    render();
   }
   btn.disabled = false; btn.textContent = 'Hinzufügen';
 }
@@ -426,6 +429,7 @@ async function markVisited(id) {
   render();
   try {
     await writeAll();
+    setTimeout(async () => { await loadData(); }, 2000);
   } catch(e) {
     showStatus(`Besucht konnte nicht gespeichert werden: ${e.message}`, 'error');
   }
@@ -439,6 +443,7 @@ async function removeCompany(id) {
   render();
   try {
     await writeAll();
+    setTimeout(async () => { await loadData(); }, 2000);
   } catch(e) {
     showStatus(`Fehler beim Löschen: ${e.message}`, 'error');
     data = prev; render();
@@ -486,7 +491,9 @@ async function saveEdit() {
     c.note   = document.getElementById('editNote').value.trim();
     try {
       await writeAll();
-      hideStatus(); render(); closeModal();
+      closeModal();
+      showStatus('Gespeichert – wird bestätigt…', 'info', true);
+      setTimeout(async () => { await loadData(); hideStatus(); }, 2000);
     } catch(e) {
       showStatus(`Fehler: ${e.message}`,'error');
     }
