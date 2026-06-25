@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAEg0lEQVR4nO2ZW08bRxTHz4zXN7xgbGwcIJhycYppQjAK4JCWqlWaqhfUh7T5Gn3v9+h7n6u+9AGJSo2iNoJQSB0uhXA3YMBgGxPwdb3rOX1YAjSt0sXdzRZp/w/W7njnzPntmTNzxiaICJdZ3KV2nwBwAMBe3lwuyQ6Tyz6FqN4O/FcZAHrLANBbBoDeMgD0lgGgtwwAvWUAKJCm9TqnhVHGGL5yQiIECNHizPTmDjSIqAWDJhEYj4wVhaLdamOIiAiA3Z09NXyNzKDuWOrnQDafnVuepZSuxdZ2EzvxxO5R9viH0e8Pj9Igx0FVqQ8gSWJbc3uhmK+r9biddZTSeGK3wx+YX50nhLD/PwAhRBCK5XL57uBdf1OLUBJ6gqGCUOCreNXHAo2WUUIIAMnms/4Gv9lsiSfjlNJUOqnFWJoAMMaq7PbJ2d/SLw6++uTBtda3SyUhV8gVhIKJqjyiVhHgTFz6KJ3NZ5PpZCK1xzuqGWOUUNXXbPWXUUQUJVGURAIkk8vMLs5YLBZRFL1ur9VilRjjVA2C+gAcZ/Z5G6qreJOJm1uerav1SJLUUN94OzRYRlR9Cmm+E5dZ2URNAFAGIBpMWaUAiAyAICABIhcECACA8E/1gWwTkRFCAeQbIJS+ZhM+XzshovKao5IInHY5Hea8EQSk5NUXffYAAWRIKWWMEUJkSLmL/I7Om1UHgCGjhD5Z+GUnuWWz2MJd73uc9fJXeSEnSiWnw/V3dwkhP0dGSmLJRGmoo7/e1aDcp9RRwlXtNlFF+ak0ibeTG5+Fv8zkjx5Njw4E33u2Mtnpv76d3JxcHPv6/jcLGzP7h/H+4Ls7yc2N/fWP+76wW+yxRHR48MHcemRha7YoFiMrk10tN1x83cPIyJ3rH8xFn0ll0WHj80LO6XANBIemlsZyxUxPe993o9+GAuF7t4blGft6x5QmFQEysfB4Zu13b63vp6kfr7ibIisTVovt8/D9dCb1dPmJu8Yz9sejlZ3FwNUuu8WOAAzZ3HpkL71bZXUAYC3vfro0Ht1bcfIuV7UnfrD90a3h6bWpD0OfZguZh5GRWCLqsPJTS+O91273d95R6JhSgFJZNJutwZYbQ933OJO5WMp3tdz0On3RvVVENHNmqSz1tPfx9por7kYAIAAmagr6u0OB/vX48sTzx5RQQSxSQv31rQjoczfaLVV+b6vDxlsttirbSaXUGwiXRGErEUVlJ7l/zwE5jtup2FVPs9ySyR9Pr001e1v89W0Tz399562buWJ2dWepp6OvIOScDpfNYgeAuWjk4CjJcVyoY+A49yKW3PA6fbXVbgCotjv3D3ebPP7N/fUWX9tuKuZzN27ur+0cbPcGwgUhv7w9Hw4OUQXZfLFV6EIL3JuR0ikkc57sAIiMleUWxhgAyi3yxWkXhkwWnjzAEJl8QIOzveLskyGTWPmlfabQsYr2gYt2UGyWXPzP0gprIfzrtVqzqgI7lQBU8J60k/HLnN4yAPSWAaC3DAC9ZQDoLQNAbxkAessA0FsGgN4yAPTWpQf4E+OAK22V7UXNAAAAAElFTkSuQmCC">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Job Tracker — Peter Barmet</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -20,176 +21,82 @@
   --acc-3:   #B8D9C5;
   --warn:    #C45000;
   --warn-2:  #FFF0E6;
+  --blue:    #1A56A0;
+  --blue-2:  #E8F0FA;
+  --yellow:  #B45309;
+  --yellow-2:#FEF3C7;
   --r:       8px;
   --r-sm:    5px;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-}
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; -webkit-font-smoothing: antialiased; }
 
-.topbar {
-  background: var(--ink);
-  color: #fff;
-  padding: 0 2rem;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-}
-
+.topbar { background: var(--ink); color: #fff; padding: 0 2rem; height: 52px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
 .topbar-left { display: flex; align-items: center; gap: 12px; }
-
-.topbar-logo {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  opacity: 0.9;
-}
-
-.topbar-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #4ADE80;
-  animation: pulse 2s ease-in-out infinite;
-}
-
+.topbar-logo { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; letter-spacing: 0.05em; opacity: 0.9; }
+.topbar-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ADE80; animation: pulse 2s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
 .topbar-right { display: flex; gap: 8px; align-items: center; }
-
-.topbar-stat {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  color: rgba(255,255,255,0.5);
-  padding: 4px 10px;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 999px;
-}
+.topbar-stat { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.5); padding: 4px 10px; border: 1px solid rgba(255,255,255,0.1); border-radius: 999px; }
 .topbar-stat span { color: #fff; font-weight: 500; }
 
 .page { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
-
-.page-header {
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--rule);
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
+.page-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule); display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 .page-title { font-size: 26px; font-weight: 600; letter-spacing: -0.5px; }
 .page-sub { font-size: 13px; color: var(--ink-3); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
 .header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
-.btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 8px 14px; border-radius: var(--r-sm);
-  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
-  cursor: pointer; border: 1px solid var(--rule);
-  background: var(--surface); color: var(--ink);
-  transition: all 0.15s; white-space: nowrap;
-}
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--r-sm); font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); transition: all 0.15s; white-space: nowrap; }
 .btn:hover { background: #F0F0EE; border-color: #D0D0D0; }
 .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
 .btn-primary:hover { background: #084D32; border-color: #084D32; }
 .btn-ghost { background: transparent; border-color: transparent; color: var(--ink-2); }
 .btn-ghost:hover { background: var(--rule); border-color: var(--rule); }
-.btn-sm { padding: 6px 10px; font-size: 12px; }
+.btn-sm { padding: 5px 10px; font-size: 12px; }
+.btn-blue { background: var(--blue); color: #fff; border-color: var(--blue); }
+.btn-blue:hover { background: #154280; border-color: #154280; }
 
-.status-bar {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 14px;
-  border-radius: var(--r);
-  margin-bottom: 1.25rem;
-  font-size: 12px;
-  flex-wrap: wrap;
-}
+.status-bar { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: var(--r); margin-bottom: 1.25rem; font-size: 12px; flex-wrap: wrap; }
 .status-bar.info { background: var(--acc-2); border: 1px solid var(--acc-3); color: var(--accent); }
 .status-bar.error { background: var(--warn-2); border: 1px solid #F0C0A0; color: var(--warn); }
 .status-bar.loading { background: #F0F0EE; border: 1px solid var(--rule); color: var(--ink-2); }
-
-.spinner {
-  width: 14px; height: 14px;
-  border: 2px solid rgba(0,0,0,0.1);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-  flex-shrink: 0;
-}
+.spinner { width: 14px; height: 14px; border: 2px solid rgba(0,0,0,0.1); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .toolbar { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; align-items: center; }
-
 .search-wrap { flex: 1; min-width: 200px; position: relative; }
 .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--ink-3); font-size: 14px; pointer-events: none; }
-.search-input {
-  width: 100%; padding: 9px 14px 9px 34px;
-  background: var(--surface); border: 1px solid var(--rule);
-  border-radius: var(--r-sm); font-family: 'Inter', sans-serif;
-  font-size: 14px; color: var(--ink); outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
+.search-input { width: 100%; padding: 9px 14px 9px 34px; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-sm); font-family: 'Inter', sans-serif; font-size: 14px; color: var(--ink); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
 .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(10,92,60,0.08); }
 .search-input::placeholder { color: var(--ink-3); }
 
-.filter-row { display: flex; gap: 4px; margin-bottom: 1.25rem; align-items: center; }
-.filter-tab {
-  padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 500;
-  cursor: pointer; border: 1px solid transparent; background: transparent;
-  color: var(--ink-3); font-family: 'Inter', sans-serif; transition: all 0.15s;
-}
+.filter-row { display: flex; gap: 4px; margin-bottom: 1.25rem; align-items: center; flex-wrap: wrap; }
+.filter-tab { padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 500; cursor: pointer; border: 1px solid transparent; background: transparent; color: var(--ink-3); font-family: 'Inter', sans-serif; transition: all 0.15s; }
 .filter-tab:hover { background: var(--rule); color: var(--ink-2); }
 .filter-tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
-.filter-count {
-  font-family: 'JetBrains Mono', monospace; font-size: 10px;
-  padding: 1px 5px; border-radius: 999px; background: rgba(255,255,255,0.2); margin-left: 2px;
-}
+.filter-count { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 1px 5px; border-radius: 999px; background: rgba(255,255,255,0.2); margin-left: 2px; }
 .filter-tab:not(.active) .filter-count { background: var(--rule); color: var(--ink-3); }
 
-.add-panel {
-  background: var(--surface); border: 1px solid var(--rule);
-  border-radius: var(--r); padding: 1.25rem;
-  margin-bottom: 1.25rem; display: none; flex-direction: column; gap: 12px;
-}
+/* Add panel */
+.add-panel { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r); padding: 1.25rem; margin-bottom: 1.25rem; display: none; flex-direction: column; gap: 12px; }
 .add-panel.open { display: flex; }
-
 .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
 .form-field { flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 5px; }
 .field-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink-3); }
-.field-input {
-  padding: 8px 11px; background: var(--bg); border: 1px solid var(--rule);
-  border-radius: var(--r-sm); font-family: 'Inter', sans-serif;
-  font-size: 13px; color: var(--ink); outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
+.field-input { padding: 8px 11px; background: var(--bg); border: 1px solid var(--rule); border-radius: var(--r-sm); font-family: 'Inter', sans-serif; font-size: 13px; color: var(--ink); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
 .field-input:focus { border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 3px rgba(10,92,60,0.08); }
 .field-input::placeholder { color: var(--ink-3); }
 .form-actions { display: flex; gap: 8px; }
 
+/* Company list */
 .company-list { display: flex; flex-direction: column; gap: 2px; }
 
-.company-row {
-  background: var(--surface); border: 1px solid var(--rule);
-  border-radius: var(--r); padding: 1rem 1.25rem;
-  display: grid; grid-template-columns: 1fr auto;
-  gap: 16px; align-items: center;
-  transition: border-color 0.15s, transform 0.1s, box-shadow 0.15s;
-}
-.company-row:hover { border-color: #D0D0D0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transform: translateY(-1px); }
-.company-row.visited { border-left: 3px solid var(--accent); }
+.company-card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r); overflow: hidden; transition: border-color 0.15s, box-shadow 0.15s; }
+.company-card:hover { border-color: #D0D0D0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.company-card.visited { border-left: 3px solid var(--accent); }
+
+.company-row { padding: 0.875rem 1.25rem; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; }
 
 .row-left { display: flex; align-items: center; gap: 14px; min-width: 0; }
 .row-indicator { width: 7px; height: 7px; border-radius: 50%; background: var(--rule); flex-shrink: 0; border: 1.5px solid #C8C8C8; transition: all 0.2s; }
@@ -198,7 +105,7 @@ body {
 .row-name { font-size: 14px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: -0.1px; }
 .row-meta { display: flex; align-items: center; gap: 8px; margin-top: 3px; flex-wrap: wrap; }
 .row-sector { font-size: 12px; color: var(--ink-3); }
-.row-note { font-size: 11px; color: var(--ink-3); font-family: 'JetBrains Mono', monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 260px; }
+.row-note { font-size: 11px; color: var(--ink-3); font-family: 'JetBrains Mono', monospace; }
 .visited-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; color: var(--accent); background: var(--acc-2); padding: 2px 8px; border-radius: 999px; font-family: 'JetBrains Mono', monospace; }
 
 .row-actions { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
@@ -207,11 +114,44 @@ body {
 .icon-btn.del:hover { background: var(--warn-2); color: var(--warn); border-color: #F0C0A0; }
 .visit-btn { font-size: 12px; padding: 6px 12px; border-radius: var(--r-sm); }
 
+/* Bewerbungen dropdown */
+.bewerbungen-section { border-top: 1px solid var(--rule); background: #FAFAF8; }
+.bewerbungen-toggle { width: 100%; padding: 8px 1.25rem; display: flex; align-items: center; gap: 8px; background: transparent; border: none; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: var(--ink-2); transition: background 0.15s; text-align: left; }
+.bewerbungen-toggle:hover { background: var(--rule); }
+.toggle-arrow { font-size: 10px; transition: transform 0.2s; color: var(--ink-3); }
+.toggle-arrow.open { transform: rotate(90deg); }
+.bew-count-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 1px 6px; border-radius: 999px; background: var(--blue-2); color: var(--blue); font-weight: 600; }
+
+.bewerbungen-list { display: none; padding: 0 1.25rem 0.875rem; flex-direction: column; gap: 6px; }
+.bewerbungen-list.open { display: flex; }
+
+.bew-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-sm); padding: 0.625rem 0.875rem; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
+.bew-item.stand-offen { border-left: 3px solid var(--blue); }
+.bew-item.stand-interview { border-left: 3px solid var(--yellow); }
+.bew-item.stand-absage { border-left: 3px solid var(--ink-3); opacity: 0.7; }
+
+.bew-bezeichnung { font-size: 13px; font-weight: 500; color: var(--ink); }
+.bew-meta { display: flex; align-items: center; gap: 8px; margin-top: 3px; flex-wrap: wrap; }
+.bew-datum { font-size: 11px; color: var(--ink-3); font-family: 'JetBrains Mono', monospace; }
+.bew-kommentar { font-size: 11px; color: var(--ink-3); font-style: italic; }
+
+.stand-badge { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.3px; }
+.stand-badge.offen { background: var(--blue-2); color: var(--blue); }
+.stand-badge.interview { background: var(--yellow-2); color: var(--yellow); }
+.stand-badge.absage { background: #F3F4F6; color: var(--ink-3); }
+
+.bew-actions { display: flex; gap: 4px; align-items: center; }
+
+.add-bew-btn { margin-top: 6px; width: 100%; padding: 6px; border: 1px dashed var(--acc-3); border-radius: var(--r-sm); background: transparent; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--accent); font-weight: 500; transition: all 0.15s; display: flex; align-items: center; justify-content: center; gap: 5px; }
+.add-bew-btn:hover { background: var(--acc-2); border-color: var(--accent); }
+
+/* Modal */
 .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(13,13,13,0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 100; align-items: center; justify-content: center; padding: 1.5rem; }
 .modal-backdrop.open { display: flex; }
 .modal { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r); padding: 1.5rem; width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); animation: modal-in 0.2s ease; }
 @keyframes modal-in { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 .modal-title { font-size: 16px; font-weight: 600; letter-spacing: -0.2px; }
+.modal-subtitle { font-size: 12px; color: var(--ink-3); margin-top: -8px; }
 .modal-actions { display: flex; gap: 8px; margin-top: 4px; }
 
 .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: var(--ink-3); padding: 1rem 0 0.5rem; display: flex; align-items: center; gap: 8px; }
@@ -238,8 +178,8 @@ body {
     <span class="topbar-logo">JOB TRACKER — PETER BARMET</span>
   </div>
   <div class="topbar-right">
-    <div class="topbar-stat">Gesamt <span id="statTotal">0</span></div>
-    <div class="topbar-stat">Besucht <span id="statVisited">0</span></div>
+    <div class="topbar-stat">Firmen <span id="statTotal">0</span></div>
+    <div class="topbar-stat">Bewerbungen <span id="statBew">0</span></div>
     <div class="topbar-stat">Offen <span id="statOpen">0</span></div>
   </div>
 </div>
@@ -247,17 +187,18 @@ body {
 <div class="page">
   <div class="page-header">
     <div>
-      <h1 class="page-title">Karriereseiten</h1>
+      <h1 class="page-title">Karriereseiten & Bewerbungen</h1>
       <p class="page-sub">Wöchentlich durchgehen · neue Stellen nicht verpassen</p>
     </div>
     <div class="header-actions">
-      <button class="btn" onclick="loadData()" id="refreshBtn">↺ Aktualisieren</button>
+      <button class="btn" onclick="loadAll()">↺ Aktualisieren</button>
       <button class="btn btn-primary" onclick="toggleAdd()" id="addBtn">+ Unternehmen</button>
     </div>
   </div>
 
   <div id="statusBar" class="status-bar loading" style="display:none"></div>
 
+  <!-- Add company form -->
   <div class="add-panel" id="addPanel">
     <div class="form-row">
       <div class="form-field">
@@ -293,52 +234,71 @@ body {
 
   <div class="filter-row">
     <button class="filter-tab active" onclick="setFilter('all',this)">Alle <span class="filter-count" id="fc-all">0</span></button>
-    <button class="filter-tab" onclick="setFilter('open',this)">Offen <span class="filter-count" id="fc-open">0</span></button>
+    <button class="filter-tab" onclick="setFilter('open',this)">Noch nicht besucht <span class="filter-count" id="fc-open">0</span></button>
     <button class="filter-tab" onclick="setFilter('visited',this)">Besucht <span class="filter-count" id="fc-visited">0</span></button>
+    <button class="filter-tab" onclick="setFilter('applied',this)">Mit Bewerbung <span class="filter-count" id="fc-applied">0</span></button>
   </div>
 
   <div class="company-list" id="list"></div>
 </div>
 
-<!-- Edit modal -->
-<div class="modal-backdrop" id="editModal" onclick="closeModalOutside(event)">
+<!-- Edit company modal -->
+<div class="modal-backdrop" id="editModal" onclick="closeModalOutside(event,'editModal')">
   <div class="modal">
-    <h2 class="modal-title">Eintrag bearbeiten</h2>
+    <h2 class="modal-title">Unternehmen bearbeiten</h2>
+    <div class="form-row">
+      <div class="form-field"><label class="field-label">Unternehmen *</label><input class="field-input" type="text" id="editName" /></div>
+      <div class="form-field"><label class="field-label">Branche</label><input class="field-input" type="text" id="editSector" /></div>
+    </div>
+    <div class="form-field"><label class="field-label">URL *</label><input class="field-input" type="url" id="editUrl" /></div>
+    <div class="form-field"><label class="field-label">Notiz</label><input class="field-input" type="text" id="editNote" /></div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" onclick="saveEdit()">Speichern</button>
+      <button class="btn btn-ghost" onclick="closeModal('editModal')">Abbrechen</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add/Edit Bewerbung modal -->
+<div class="modal-backdrop" id="bewModal" onclick="closeModalOutside(event,'bewModal')">
+  <div class="modal">
+    <h2 class="modal-title" id="bewModalTitle">Bewerbung erfassen</h2>
+    <p class="modal-subtitle" id="bewModalSub"></p>
+    <div class="form-field"><label class="field-label">Stellenbezeichnung *</label><input class="field-input" type="text" id="bewBezeichnung" placeholder="z.B. Senior Financial Controller" /></div>
     <div class="form-row">
       <div class="form-field">
-        <label class="field-label">Unternehmen *</label>
-        <input class="field-input" type="text" id="editName" />
+        <label class="field-label">Datum *</label>
+        <input class="field-input" type="date" id="bewDatum" />
       </div>
       <div class="form-field">
-        <label class="field-label">Branche</label>
-        <input class="field-input" type="text" id="editSector" />
+        <label class="field-label">Stand *</label>
+        <select class="field-input" id="bewStand">
+          <option value="Offen">Offen</option>
+          <option value="Interview">Interview</option>
+          <option value="Absage">Absage</option>
+        </select>
       </div>
     </div>
-    <div class="form-field">
-      <label class="field-label">URL *</label>
-      <input class="field-input" type="url" id="editUrl" />
-    </div>
-    <div class="form-field">
-      <label class="field-label">Notiz</label>
-      <input class="field-input" type="text" id="editNote" />
-    </div>
+    <div class="form-field"><label class="field-label">Kommentar</label><input class="field-input" type="text" id="bewKommentar" placeholder="z.B. Referral via LinkedIn, Recruiter: Max Muster" /></div>
     <div class="modal-actions">
-      <button class="btn btn-primary" onclick="saveEdit()" id="editSaveBtn">Speichern</button>
-      <button class="btn btn-ghost" onclick="closeModal()">Abbrechen</button>
+      <button class="btn btn-primary" onclick="saveBewerbung()" id="bewSaveBtn">Speichern</button>
+      <button class="btn btn-ghost" onclick="closeModal('bewModal')">Abbrechen</button>
     </div>
   </div>
 </div>
 
 <script>
-// ── CONFIG ───────────────────────────────────────────────────────────────────
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlsKp_3cBSq-gBONW-dN-f7XxT8Y3PAbb3xhHcPvXliTaKa-Wa1MibmuyCmQ82uRBBeQ/exec';
-// ─────────────────────────────────────────────────────────────────────────────
 
-let data   = [];
+let companies = [];
+let bewerbungen = [];
 let filter = 'all';
 let editId = null;
+let bewEditId = null;
+let bewFirmaId = null;
+let openDropdowns = new Set();
 
-// ── Status bar ──────────────────────────────────────────────────────────────
+// ── Status ────────────────────────────────────────────────────────────────
 function showStatus(msg, type='loading', spinner=false) {
   const bar = document.getElementById('statusBar');
   bar.className = `status-bar ${type}`;
@@ -347,23 +307,14 @@ function showStatus(msg, type='loading', spinner=false) {
 }
 function hideStatus() { document.getElementById('statusBar').style.display = 'none'; }
 
-// ── Load from Sheets ────────────────────────────────────────────────────────
-async function loadData() {
+// ── Load ──────────────────────────────────────────────────────────────────
+async function loadAll() {
   showStatus('Daten werden geladen…', 'loading', true);
   try {
     const res  = await fetch(SCRIPT_URL);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const rows = await res.json();
-    // Skip header row
-    const dataRows = rows.slice(1);
-    data = dataRows.map(r => ({
-      id:      r[0] || '',
-      name:    r[1] || '',
-      sector:  r[2] || '',
-      url:     r[3] || '',
-      note:    r[4] || '',
-      visited: r[5] || null,
-    })).filter(c => c.name);
+    const json = await res.json();
+    companies   = (json.companies  || []).filter(c => c.name);
+    bewerbungen = (json.bewerbungen || []);
     hideStatus();
     render();
   } catch(e) {
@@ -371,96 +322,77 @@ async function loadData() {
   }
 }
 
-// ── Write row to Sheets ─────────────────────────────────────────────────────
-async function writeAll() {
-  const values = data.map(c => [c.id, c.name, c.sector, c.url, c.note, c.visited || '']);
-  const formData = new FormData();
-  formData.append('data', JSON.stringify(values));
-  await fetch(SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    body: formData,
-  });
-  // no-cors: opaque response, can't check status but request is sent
+// ── Write ─────────────────────────────────────────────────────────────────
+async function writeCompanies() {
+  const values = companies.map(c => [c.id, c.name, c.sector, c.url, c.note, c.visited || '']);
+  const fd = new FormData();
+  fd.append('sheet', 'Tabellenblatt1');
+  fd.append('data', JSON.stringify(values));
+  await fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', body:fd });
 }
 
-// ── Generate ID ─────────────────────────────────────────────────────────────
-function genId() { return Date.now().toString(36); }
+async function writeBewerbungen() {
+  const values = bewerbungen.map(b => [b.id, b.firma_id, b.bezeichnung, b.datum, b.stand, b.kommentar || '']);
+  const fd = new FormData();
+  fd.append('sheet', 'Bewerbungen');
+  fd.append('data', JSON.stringify(values));
+  await fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', body:fd });
+}
 
-// ── Add ─────────────────────────────────────────────────────────────────────
+function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2,5); }
+function fmt(iso) { if (!iso) return ''; try { return new Date(iso).toLocaleDateString('de-CH',{day:'2-digit',month:'2-digit',year:'numeric'}); } catch{return iso;} }
+
+// ── Companies ─────────────────────────────────────────────────────────────
+function toggleAdd() {
+  const p = document.getElementById('addPanel');
+  const isOpen = p.classList.toggle('open');
+  document.getElementById('addBtn').textContent = isOpen ? '✕ Schliessen' : '+ Unternehmen';
+  if (isOpen) setTimeout(()=>document.getElementById('newName').focus(),50);
+}
+
 async function addCompany() {
   const name = document.getElementById('newName').value.trim();
   const url  = document.getElementById('newUrl').value.trim();
-  if (!name || !url) { alert('Name und URL sind Pflichtfelder.'); return; }
-
+  if (!name||!url) { alert('Name und URL sind Pflichtfelder.'); return; }
   const btn = document.getElementById('addSaveBtn');
-  btn.disabled = true; btn.textContent = 'Speichern…';
-  showStatus('Eintrag wird gespeichert…', 'loading', true);
-
-  data.push({
-    id: genId(), name,
-    sector: document.getElementById('newSector').value.trim(),
-    url,
-    note: document.getElementById('newNote').value.trim(),
-    visited: null,
-  });
-
-  try {
-    await writeAll();
-    ['newName','newSector','newUrl','newNote'].forEach(id=>document.getElementById(id).value='');
-    toggleAdd();
-    render();
-    // Auto-refresh nach 2 Sekunden um Speicherung zu bestätigen
-    showStatus('Gespeichert – wird bestätigt…', 'info', true);
-    setTimeout(async () => { await loadData(); hideStatus(); }, 2000);
-  } catch(e) {
-    showStatus(`Fehler beim Speichern: ${e.message}`, 'error');
-    data.pop();
-    render();
-  }
-  btn.disabled = false; btn.textContent = 'Hinzufügen';
+  btn.disabled=true; btn.textContent='Speichern…';
+  companies.push({ id:genId(), name, sector:document.getElementById('newSector').value.trim(), url, note:document.getElementById('newNote').value.trim(), visited:null });
+  await writeCompanies();
+  ['newName','newSector','newUrl','newNote'].forEach(id=>document.getElementById(id).value='');
+  toggleAdd(); render();
+  setTimeout(async()=>{ await loadAll(); }, 2000);
+  btn.disabled=false; btn.textContent='Hinzufügen';
 }
 
-// ── Mark visited ─────────────────────────────────────────────────────────────
 async function markVisited(id) {
-  const c = data.find(x=>x.id===id);
+  const c = companies.find(x=>x.id===id);
   if (!c) return;
   c.visited = new Date().toISOString();
   render();
-  try {
-    await writeAll();
-    setTimeout(async () => { await loadData(); }, 2000);
-  } catch(e) {
-    showStatus(`Besucht konnte nicht gespeichert werden: ${e.message}`, 'error');
-  }
+  await writeCompanies();
+  setTimeout(async()=>{ await loadAll(); }, 2000);
 }
 
-// ── Remove ───────────────────────────────────────────────────────────────────
 async function removeCompany(id) {
-  if (!confirm('Eintrag entfernen?')) return;
-  const prev = [...data];
-  data = data.filter(x=>x.id!==id);
+  if (!confirm('Unternehmen und alle zugehörigen Bewerbungen entfernen?')) return;
+  companies   = companies.filter(x=>x.id!==id);
+  bewerbungen = bewerbungen.filter(b=>b.firma_id!==id);
   render();
-  try {
-    await writeAll();
-    setTimeout(async () => { await loadData(); }, 2000);
-  } catch(e) {
-    showStatus(`Fehler beim Löschen: ${e.message}`, 'error');
-    data = prev; render();
-  }
+  await writeCompanies();
+  await writeBewerbungen();
+  setTimeout(async()=>{ await loadAll(); }, 2000);
 }
 
-// ── Reset visited ────────────────────────────────────────────────────────────
 async function resetVisited() {
   if (!confirm('Alle Besucht-Markierungen zurücksetzen?')) return;
-  data.forEach(c=>c.visited=null);
+  companies.forEach(c=>c.visited=null);
   render();
-  try { await writeAll(); } catch(e) { showStatus(`Fehler: ${e.message}`, 'error'); }
+  await writeCompanies();
 }
 
-// ── Edit modal ───────────────────────────────────────────────────────────────
+// ── Edit company ──────────────────────────────────────────────────────────
 function openEdit(id) {
-  const c = data.find(x=>x.id===id);
+  const c = companies.find(x=>x.id===id);
   if (!c) return;
   editId = id;
   document.getElementById('editName').value   = c.name;
@@ -471,46 +403,92 @@ function openEdit(id) {
   setTimeout(()=>document.getElementById('editName').focus(),50);
 }
 
-function closeModal() { editId=null; document.getElementById('editModal').classList.remove('open'); }
-function closeModalOutside(e) { if(e.target===document.getElementById('editModal')) closeModal(); }
-
 async function saveEdit() {
   const name = document.getElementById('editName').value.trim();
   const url  = document.getElementById('editUrl').value.trim();
   if (!name||!url) { alert('Name und URL sind Pflichtfelder.'); return; }
-
-  const btn = document.getElementById('editSaveBtn');
-  btn.disabled=true; btn.textContent='Speichern…';
-  showStatus('Änderungen werden gespeichert…','loading',true);
-
-  const c = data.find(x=>x.id===editId);
+  const c = companies.find(x=>x.id===editId);
   if (c) {
-    c.name   = name;
-    c.sector = document.getElementById('editSector').value.trim();
-    c.url    = url;
-    c.note   = document.getElementById('editNote').value.trim();
-    try {
-      await writeAll();
-      closeModal();
-      showStatus('Gespeichert – wird bestätigt…', 'info', true);
-      setTimeout(async () => { await loadData(); hideStatus(); }, 2000);
-    } catch(e) {
-      showStatus(`Fehler: ${e.message}`,'error');
-    }
+    c.name=name; c.sector=document.getElementById('editSector').value.trim();
+    c.url=url; c.note=document.getElementById('editNote').value.trim();
+    closeModal('editModal');
+    render();
+    await writeCompanies();
+    setTimeout(async()=>{ await loadAll(); },2000);
   }
+}
+
+// ── Bewerbungen ───────────────────────────────────────────────────────────
+function toggleDropdown(firmaId) {
+  if (openDropdowns.has(firmaId)) { openDropdowns.delete(firmaId); }
+  else { openDropdowns.add(firmaId); }
+  render();
+}
+
+function openBewModal(firmaId, bewId=null) {
+  bewFirmaId = firmaId;
+  bewEditId  = bewId;
+  const firma = companies.find(x=>x.id===firmaId);
+  document.getElementById('bewModalTitle').textContent = bewId ? 'Bewerbung bearbeiten' : 'Bewerbung erfassen';
+  document.getElementById('bewModalSub').textContent   = firma ? firma.name : '';
+
+  if (bewId) {
+    const b = bewerbungen.find(x=>x.id===bewId);
+    if (b) {
+      document.getElementById('bewBezeichnung').value = b.bezeichnung||'';
+      document.getElementById('bewDatum').value       = b.datum||'';
+      document.getElementById('bewStand').value       = b.stand||'Offen';
+      document.getElementById('bewKommentar').value   = b.kommentar||'';
+    }
+  } else {
+    document.getElementById('bewBezeichnung').value = '';
+    document.getElementById('bewDatum').value       = new Date().toISOString().slice(0,10);
+    document.getElementById('bewStand').value       = 'Offen';
+    document.getElementById('bewKommentar').value   = '';
+  }
+  document.getElementById('bewModal').classList.add('open');
+  setTimeout(()=>document.getElementById('bewBezeichnung').focus(),50);
+}
+
+async function saveBewerbung() {
+  const bezeichnung = document.getElementById('bewBezeichnung').value.trim();
+  const datum       = document.getElementById('bewDatum').value;
+  const stand       = document.getElementById('bewStand').value;
+  const kommentar   = document.getElementById('bewKommentar').value.trim();
+  if (!bezeichnung||!datum) { alert('Bezeichnung und Datum sind Pflichtfelder.'); return; }
+
+  const btn = document.getElementById('bewSaveBtn');
+  btn.disabled=true; btn.textContent='Speichern…';
+
+  if (bewEditId) {
+    const b = bewerbungen.find(x=>x.id===bewEditId);
+    if (b) { b.bezeichnung=bezeichnung; b.datum=datum; b.stand=stand; b.kommentar=kommentar; }
+  } else {
+    bewerbungen.push({ id:genId(), firma_id:bewFirmaId, bezeichnung, datum, stand, kommentar });
+    openDropdowns.add(bewFirmaId);
+  }
+
+  closeModal('bewModal');
+  render();
+  await writeBewerbungen();
+  setTimeout(async()=>{ await loadAll(); },2000);
   btn.disabled=false; btn.textContent='Speichern';
 }
 
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
-
-// ── UI helpers ───────────────────────────────────────────────────────────────
-function toggleAdd() {
-  const p = document.getElementById('addPanel');
-  const isOpen = p.classList.toggle('open');
-  document.getElementById('addBtn').textContent = isOpen ? '✕ Schliessen' : '+ Unternehmen';
-  if (isOpen) setTimeout(()=>document.getElementById('newName').focus(),50);
+async function removeBewerbung(id) {
+  if (!confirm('Bewerbung entfernen?')) return;
+  bewerbungen = bewerbungen.filter(x=>x.id!==id);
+  render();
+  await writeBewerbungen();
+  setTimeout(async()=>{ await loadAll(); },2000);
 }
 
+// ── Modal helpers ─────────────────────────────────────────────────────────
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function closeModalOutside(e,id) { if(e.target===document.getElementById(id)) closeModal(id); }
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') { closeModal('editModal'); closeModal('bewModal'); } });
+
+// ── Filter & render ───────────────────────────────────────────────────────
 function setFilter(f,el) {
   filter=f;
   document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
@@ -518,76 +496,112 @@ function setFilter(f,el) {
   render();
 }
 
-function fmt(iso) {
-  if (!iso) return '';
-  return new Date(iso).toLocaleDateString('de-CH',{day:'2-digit',month:'2-digit',year:'numeric'});
-}
-
-// ── Render ───────────────────────────────────────────────────────────────────
 function render() {
   const q = document.getElementById('search').value.toLowerCase();
-  let filtered = data.filter(c=>c.name.toLowerCase().includes(q)||(c.sector||'').toLowerCase().includes(q));
+  let filtered = companies.filter(c=>c.name.toLowerCase().includes(q)||(c.sector||'').toLowerCase().includes(q));
 
-  const all=filtered.length, vis=filtered.filter(c=>c.visited).length, open=all-vis;
-  document.getElementById('fc-all').textContent=all;
-  document.getElementById('fc-open').textContent=open;
-  document.getElementById('fc-visited').textContent=vis;
-  document.getElementById('statTotal').textContent=data.length;
-  document.getElementById('statVisited').textContent=data.filter(c=>c.visited).length;
-  document.getElementById('statOpen').textContent=data.filter(c=>!c.visited).length;
+  const all     = filtered.length;
+  const visited = filtered.filter(c=>c.visited).length;
+  const open    = all-visited;
+  const applied = filtered.filter(c=>bewerbungen.some(b=>b.firma_id===c.id)).length;
+
+  document.getElementById('fc-all').textContent     = all;
+  document.getElementById('fc-open').textContent    = open;
+  document.getElementById('fc-visited').textContent = visited;
+  document.getElementById('fc-applied').textContent = applied;
+  document.getElementById('statTotal').textContent  = companies.length;
+  document.getElementById('statBew').textContent    = bewerbungen.length;
+  document.getElementById('statOpen').textContent   = bewerbungen.filter(b=>b.stand==='Offen').length;
 
   if (filter==='visited') filtered=filtered.filter(c=>c.visited);
   if (filter==='open')    filtered=filtered.filter(c=>!c.visited);
+  if (filter==='applied') filtered=filtered.filter(c=>bewerbungen.some(b=>b.firma_id===c.id));
 
   filtered.sort((a,b)=>{
     if(!!a.visited!==!!b.visited) return a.visited?1:-1;
     return a.name.localeCompare(b.name,'de');
   });
 
-  const list=document.getElementById('list');
+  const list = document.getElementById('list');
   if (!filtered.length) {
     list.innerHTML=`<div class="empty"><div class="empty-icon">◎</div><div class="empty-title">Keine Einträge gefunden</div><div class="empty-sub">Passe die Suche an oder füge ein neues Unternehmen hinzu.</div></div>`;
     return;
   }
 
-  const openItems=filtered.filter(c=>!c.visited);
-  const visItems =filtered.filter(c=>c.visited);
+  const openItems    = filtered.filter(c=>!c.visited);
+  const visitedItems = filtered.filter(c=>c.visited);
   let html='';
 
-  if (openItems.length && visItems.length) html+=`<div class="section-label">Noch nicht besucht — ${openItems.length}</div>`;
-  openItems.forEach(c=>{ html+=rowHTML(c); });
-  if (visItems.length && openItems.length) html+=`<div class="section-label">Besucht — ${visItems.length}</div>`;
-  visItems.forEach(c=>{ html+=rowHTML(c); });
+  if (openItems.length&&visitedItems.length) html+=`<div class="section-label">Noch nicht besucht — ${openItems.length}</div>`;
+  openItems.forEach(c=>{ html+=cardHTML(c); });
+  if (visitedItems.length&&openItems.length) html+=`<div class="section-label">Besucht — ${visitedItems.length}</div>`;
+  visitedItems.forEach(c=>{ html+=cardHTML(c); });
 
   list.innerHTML=html;
 }
 
-function rowHTML(c) {
-  return `
-    <div class="company-row ${c.visited?'visited':''}">
-      <div class="row-left">
-        <div class="row-indicator"></div>
-        <div class="row-info">
-          <div class="row-name">${c.name}</div>
-          <div class="row-meta">
-            ${c.sector?`<span class="row-sector">${c.sector}</span>`:''}
-            ${c.visited?`<span class="visited-badge">✓ ${fmt(c.visited)}</span>`:''}
-            ${c.note?`<span class="row-note">— ${c.note}</span>`:''}
-          </div>
+function cardHTML(c) {
+  const bewList = bewerbungen.filter(b=>b.firma_id===c.id);
+  const isOpen  = openDropdowns.has(c.id);
+  const bewCount = bewList.length;
+
+  const standBadge = s => {
+    const cls = s==='Offen'?'offen':s==='Interview'?'interview':'absage';
+    return `<span class="stand-badge ${cls}">${s}</span>`;
+  };
+
+  const bewItems = bewList.map(b=>`
+    <div class="bew-item stand-${(b.stand||'Offen').toLowerCase()}">
+      <div>
+        <div class="bew-bezeichnung">${b.bezeichnung}</div>
+        <div class="bew-meta">
+          ${standBadge(b.stand||'Offen')}
+          <span class="bew-datum">${fmt(b.datum)}</span>
+          ${b.kommentar?`<span class="bew-kommentar">${b.kommentar}</span>`:''}
         </div>
       </div>
-      <div class="row-actions">
-        <a href="${c.url}" target="_blank" rel="noopener"
-           class="btn btn-primary visit-btn"
-           onclick="markVisited('${c.id}')">↗ Öffnen</a>
-        <button class="icon-btn" onclick="openEdit('${c.id}')" title="Bearbeiten">✎</button>
-        <button class="icon-btn del" onclick="removeCompany('${c.id}')" title="Entfernen">✕</button>
+      <div class="bew-actions">
+        <button class="icon-btn" onclick="openBewModal('${c.id}','${b.id}')" title="Bearbeiten">✎</button>
+        <button class="icon-btn del" onclick="removeBewerbung('${b.id}')" title="Löschen">✕</button>
+      </div>
+    </div>
+  `).join('');
+
+  return `
+    <div class="company-card ${c.visited?'visited':''}">
+      <div class="company-row">
+        <div class="row-left">
+          <div class="row-indicator"></div>
+          <div class="row-info">
+            <div class="row-name">${c.name}</div>
+            <div class="row-meta">
+              ${c.sector?`<span class="row-sector">${c.sector}</span>`:''}
+              ${c.visited?`<span class="visited-badge">✓ ${fmt(c.visited)}</span>`:''}
+              ${c.note?`<span class="row-note">— ${c.note}</span>`:''}
+            </div>
+          </div>
+        </div>
+        <div class="row-actions">
+          <a href="${c.url}" target="_blank" rel="noopener" class="btn btn-primary visit-btn" onclick="markVisited('${c.id}')">↗ Öffnen</a>
+          <button class="icon-btn" onclick="openEdit('${c.id}')" title="Bearbeiten">✎</button>
+          <button class="icon-btn del" onclick="removeCompany('${c.id}')" title="Entfernen">✕</button>
+        </div>
+      </div>
+      <div class="bewerbungen-section">
+        <button class="bewerbungen-toggle" onclick="toggleDropdown('${c.id}')">
+          <span class="toggle-arrow ${isOpen?'open':''}">▶</span>
+          Bewerbungen
+          ${bewCount>0?`<span class="bew-count-badge">${bewCount}</span>`:''}
+        </button>
+        <div class="bewerbungen-list ${isOpen?'open':''}">
+          ${bewItems}
+          <button class="add-bew-btn" onclick="openBewModal('${c.id}')">+ Bewerbung erfassen</button>
+        </div>
       </div>
     </div>`;
 }
 
-// ── Init ─────────────────────────────────────────────────────────────────────
-loadData();
+loadAll();
 </script>
 </body>
 </html>
