@@ -9,24 +9,24 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --ink:     #0D0D0D; --ink-2:   #4A4A4A; --ink-3:   #9A9A9A;
-  --rule:    #E8E8E8; --surface: #FFFFFF; --bg:      #F7F7F5;
-  --accent:  #0A5C3C; --acc-2:   #E8F2EC; --acc-3:   #B8D9C5;
-  --warn:    #C45000; --warn-2:  #FFF0E6;
-  --blue:    #1A56A0; --blue-2:  #E8F0FA;
-  --yellow:  #B45309; --yellow-2:#FEF3C7;
+  --ink: #0D0D0D; --ink-2: #4A4A4A; --ink-3: #9A9A9A;
+  --rule: #E8E8E8; --surface: #FFFFFF; --bg: #F7F7F5;
+  --accent: #0A5C3C; --acc-2: #E8F2EC; --acc-3: #B8D9C5;
+  --warn: #C45000; --warn-2: #FFF0E6;
+  --blue: #1A56A0; --blue-2: #E8F0FA;
+  --yellow: #B45309; --yellow-2: #FEF3C7;
   --r: 8px; --r-sm: 5px;
 }
-body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+body { font-family: "Inter", sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; -webkit-font-smoothing: antialiased; }
 
 /* Topbar */
 .topbar { background: var(--ink); color: #fff; padding: 0 2rem; height: 52px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
 .topbar-left { display: flex; align-items: center; gap: 12px; }
 .topbar-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ADE80; animation: pulse 2s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-.topbar-logo { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; letter-spacing: 0.05em; opacity: 0.9; }
+.topbar-logo { font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 500; letter-spacing: 0.05em; opacity: 0.9; }
 .topbar-right { display: flex; gap: 8px; align-items: center; }
-.topbar-stat { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.5); padding: 4px 10px; border: 1px solid rgba(255,255,255,0.1); border-radius: 999px; }
+.topbar-stat { font-family: "JetBrains Mono", monospace; font-size: 11px; color: rgba(255,255,255,0.5); padding: 4px 10px; border: 1px solid rgba(255,255,255,0.1); border-radius: 999px; }
 .topbar-stat span { color: #fff; font-weight: 500; }
 .topbar-logo-img { width: 28px; height: 28px; border-radius: 4px; object-fit: contain; opacity: 0.9; }
 
@@ -34,11 +34,11 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink
 .page { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
 .page-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule); display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 .page-title { font-size: 26px; font-weight: 600; letter-spacing: -0.5px; }
-.page-sub { font-size: 13px; color: var(--ink-3); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+.page-sub { font-size: 13px; color: var(--ink-3); margin-top: 4px; font-family: "JetBrains Mono", monospace; }
 .header-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 
 /* Buttons */
-.btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--r-sm); font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); transition: all 0.15s; white-space: nowrap; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--r-sm); font-family: "Inter", sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); transition: all 0.15s; white-space: nowrap; }
 .btn:hover { background: #F0F0EE; border-color: #D0D0D0; }
 .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
@@ -48,7 +48,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink
 .btn-sm { padding: 5px 10px; font-size: 12px; }
 .btn-icon { width: 34px; height: 34px; padding: 0; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; font-size: 16px; }
 
-/* Status */
+/* Status bar */
 .status-bar { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: var(--r); margin-bottom: 1.25rem; font-size: 12px; flex-wrap: wrap; }
 .status-bar.info { background: var(--acc-2); border: 1px solid var(--acc-3); color: var(--accent); }
 .status-bar.error { background: var(--warn-2); border: 1px solid #F0C0A0; color: var(--warn); }
@@ -60,17 +60,24 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink
 .toolbar { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; align-items: center; }
 .search-wrap { flex: 1; min-width: 200px; position: relative; }
 .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--ink-3); font-size: 14px; pointer-events: none; }
-.search-input { width: 100%; padding: 9px 14px 9px 34px; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-sm); font-family: 'Inter', sans-serif; font-size: 14px; color: var(--ink); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
+.search-input { width: 100%; padding: 9px 14px 9px 34px; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-sm); font-family: "Inter", sans-serif; font-size: 14px; color: var(--ink); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
 .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(10,92,60,0.08); }
 .search-input::placeholder { color: var(--ink-3); }
 
 /* Filter tabs */
 .filter-row { display: flex; gap: 4px; margin-bottom: 1.25rem; align-items: center; flex-wrap: wrap; }
-.filter-tab { padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 500; cursor: pointer; border: 1px solid transparent; background: transparent; color: var(--ink-3); font-family: 'Inter', sans-serif; transition: all 0.15s; }
+.filter-tab { padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 500; cursor: pointer; border: 1px solid transparent; background: transparent; color: var(--ink-3); font-family: "Inter", sans-serif; transition: all 0.15s; }
 .filter-tab:hover { background: var(--rule); color: var(--ink-2); }
 .filter-tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
-.filter-count { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 1px 5px; border-radius: 999px; background: rgba(255,255,255,0.2); margin-left: 2px; }
+.filter-count { font-family: "JetBrains Mono", monospace; font-size: 10px; padding: 1px 5px; border-radius: 999px; background: rgba(255,255,255,0.2); margin-left: 2px; }
 .filter-tab:not(.active) .filter-count { background: var(--rule); color: var(--ink-3); }
+
+/* Star rating */
+.star-rating { display: flex; gap: 2px; align-items: center; }
+.star { cursor: pointer; font-size: 16px; color: #D0D0D0; transition: color 0.1s; line-height: 1; }
+.star.filled { color: #F59E0B; }
+.star:hover { color: #F59E0B; }
+.star-sm { font-size: 13px; }
 
 /* Add panels */
 .add-panel { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r); padding: 1.25rem; margin-bottom: 1.25rem; display: none; flex-direction: column; gap: 12px; }
@@ -78,10 +85,15 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink
 .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
 .form-field { flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 5px; }
 .field-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink-3); }
-.field-input { padding: 8px 11px; background: var(--bg); border: 1px solid var(--rule); border-radius: var(--r-sm); font-family: 'Inter', sans-serif; font-size: 13px; color: var(--ink); outline: none; transition: border-color 0.15s; width: 100%; }
+.field-input { padding: 8px 11px; background: var(--bg); border: 1px solid var(--rule); border-radius: var(--r-sm); font-family: "Inter", sans-serif; font-size: 13px; color: var(--ink); outline: none; transition: border-color 0.15s; width: 100%; }
 .field-input:focus { border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 3px rgba(10,92,60,0.08); }
 .field-input::placeholder { color: var(--ink-3); }
 .form-actions { display: flex; gap: 8px; }
+
+/* Checkbox */
+.checkbox-row { display: flex; align-items: center; gap: 8px; }
+.checkbox-row input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--accent); cursor: pointer; }
+.checkbox-row label { font-size: 13px; color: var(--ink-2); cursor: pointer; }
 
 /* Company cards */
 .company-list { display: flex; flex-direction: column; gap: 2px; }
@@ -96,8 +108,8 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink
 .row-name { font-size: 14px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: -0.1px; }
 .row-meta { display: flex; align-items: center; gap: 8px; margin-top: 3px; flex-wrap: wrap; }
 .row-sector { font-size: 12px; color: var(--ink-3); }
-.row-note { font-size: 11px; color: var(--ink-3); font-family: 'JetBrains Mono', monospace; }
-.visited-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; color: var(--accent); background: var(--acc-2); padding: 2px 8px; border-radius: 999px; font-family: 'JetBrains Mono', monospace; }
+.row-note { font-size: 11px; color: var(--ink-3); font-family: "JetBrains Mono", monospace; }
+.visited-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; color: var(--accent); background: var(--acc-2); padding: 2px 8px; border-radius: 999px; font-family: "JetBrains Mono", monospace; }
 .row-actions { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
 .icon-btn { width: 30px; height: 30px; border-radius: var(--r-sm); border: 1px solid transparent; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--ink-3); font-size: 14px; transition: all 0.15s; }
 .icon-btn:hover { background: var(--bg); border-color: var(--rule); color: var(--ink); }
@@ -106,42 +118,44 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink
 
 /* Bewerbungen dropdown */
 .bewerbungen-section { border-top: 1px solid var(--rule); background: #FAFAF8; }
-.bewerbungen-toggle { width: 100%; padding: 8px 1.25rem; display: flex; align-items: center; gap: 8px; background: transparent; border: none; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: var(--ink-2); transition: background 0.15s; text-align: left; }
+.bewerbungen-toggle { width: 100%; padding: 8px 1.25rem; display: flex; align-items: center; gap: 8px; background: transparent; border: none; cursor: pointer; font-family: "Inter", sans-serif; font-size: 12px; font-weight: 500; color: var(--ink-2); transition: background 0.15s; text-align: left; }
 .bewerbungen-toggle:hover { background: var(--rule); }
 .toggle-arrow { font-size: 10px; transition: transform 0.2s; color: var(--ink-3); }
 .toggle-arrow.open { transform: rotate(90deg); }
-.bew-count-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 1px 6px; border-radius: 999px; background: var(--blue-2); color: var(--blue); font-weight: 600; }
-.bew-open-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 1px 6px; border-radius: 999px; background: var(--acc-2); color: var(--accent); font-weight: 600; }
-
+.bew-count-badge { font-family: "JetBrains Mono", monospace; font-size: 10px; padding: 1px 6px; border-radius: 999px; background: var(--blue-2); color: var(--blue); font-weight: 600; }
+.bew-open-badge { font-family: "JetBrains Mono", monospace; font-size: 10px; padding: 1px 6px; border-radius: 999px; background: var(--acc-2); color: var(--accent); font-weight: 600; }
 .bewerbungen-list { display: none; padding: 0 1.25rem 0.875rem; flex-direction: column; gap: 6px; }
 .bewerbungen-list.open { display: flex; }
-.bew-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-sm); padding: 0.625rem 0.875rem; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
+
+/* Bewerbung item */
+.bew-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-sm); padding: 0.625rem 0.875rem; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; transition: opacity 0.2s; }
 .bew-item.stand-offen { border-left: 3px solid var(--blue); }
+.bew-item.stand-abgesagt { border-left: 3px solid var(--ink-3); opacity: 0.45; }
 .bew-item.stand-interview { border-left: 3px solid var(--yellow); }
-.bew-item.stand-absage { border-left: 3px solid var(--ink-3); opacity: 0.7; }
 .bew-bezeichnung { font-size: 13px; font-weight: 500; color: var(--ink); }
 .bew-meta { display: flex; align-items: center; gap: 8px; margin-top: 3px; flex-wrap: wrap; }
-.bew-datum { font-size: 11px; color: var(--ink-3); font-family: 'JetBrains Mono', monospace; }
+.bew-datum { font-size: 11px; color: var(--ink-3); font-family: "JetBrains Mono", monospace; }
 .bew-kommentar { font-size: 11px; color: var(--ink-3); font-style: italic; }
 .stand-badge { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.3px; }
 .stand-badge.offen { background: var(--blue-2); color: var(--blue); }
 .stand-badge.interview { background: var(--yellow-2); color: var(--yellow); }
-.stand-badge.absage { background: #F3F4F6; color: var(--ink-3); }
+.stand-badge.abgesagt { background: #F3F4F6; color: var(--ink-3); }
+.interview-badge { font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 999px; background: var(--yellow-2); color: var(--yellow); }
 .bew-actions { display: flex; gap: 4px; align-items: center; }
-.add-bew-btn { margin-top: 6px; width: 100%; padding: 6px; border: 1px dashed var(--acc-3); border-radius: var(--r-sm); background: transparent; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--accent); font-weight: 500; transition: all 0.15s; display: flex; align-items: center; justify-content: center; gap: 5px; }
+.add-bew-btn { margin-top: 6px; width: 100%; padding: 6px; border: 1px dashed var(--acc-3); border-radius: var(--r-sm); background: transparent; cursor: pointer; font-family: "Inter", sans-serif; font-size: 12px; color: var(--accent); font-weight: 500; transition: all 0.15s; display: flex; align-items: center; justify-content: center; gap: 5px; }
 .add-bew-btn:hover { background: var(--acc-2); border-color: var(--accent); }
 
 /* Modal */
 .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(13,13,13,0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 100; align-items: center; justify-content: center; padding: 1.5rem; }
 .modal-backdrop.open { display: flex; }
-.modal { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r); padding: 1.5rem; width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); animation: modal-in 0.2s ease; }
+.modal { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r); padding: 1.5rem; width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); animation: modal-in 0.2s ease; }
 @keyframes modal-in { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 .modal-title { font-size: 16px; font-weight: 600; letter-spacing: -0.2px; }
 .modal-subtitle { font-size: 12px; color: var(--ink-3); margin-top: -8px; }
 .modal-actions { display: flex; gap: 8px; margin-top: 4px; }
 
 .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: var(--ink-3); padding: 1rem 0 0.5rem; display: flex; align-items: center; gap: 8px; }
-.section-label::after { content:''; flex:1; height:1px; background:var(--rule); }
+.section-label::after { content:""; flex:1; height:1px; background:var(--rule); }
 .empty { text-align: center; padding: 4rem 0; color: var(--ink-3); }
 .empty-icon { font-size: 32px; margin-bottom: 1rem; opacity: 0.4; }
 .empty-title { font-size: 15px; font-weight: 500; color: var(--ink-2); margin-bottom: 6px; }
@@ -193,28 +207,49 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink
     </div>
     <div class="form-field"><label class="field-label">Karriereseite URL *</label><input class="field-input" type="url" id="newUrl" placeholder="https://…" /></div>
     <div class="form-field"><label class="field-label">Notiz</label><input class="field-input" type="text" id="newNote" placeholder="z.B. SAP-Umfeld, Finance-Team wächst" /></div>
+    <div class="form-field">
+      <label class="field-label">Unternehmensrating</label>
+      <div class="star-rating" id="newFirmaRating">
+        <span class="star" onclick="setNewFirmaRating(1)">★</span>
+        <span class="star" onclick="setNewFirmaRating(2)">★</span>
+        <span class="star" onclick="setNewFirmaRating(3)">★</span>
+      </div>
+    </div>
     <div class="form-actions">
       <button class="btn btn-primary" onclick="addCompany()" id="addSaveBtn">Hinzufügen</button>
       <button class="btn btn-ghost" onclick="toggleAdd()">Abbrechen</button>
     </div>
   </div>
 
-  <!-- Add Bewerbung panel (standalone) -->
+  <!-- Add Bewerbung panel -->
   <div class="add-panel" id="addBewPanel">
-    <div class="form-field">
-      <label class="field-label">Unternehmen *</label>
-      <select class="field-input" id="bewFirmaSelect"></select>
-    </div>
+    <div class="form-field"><label class="field-label">Unternehmen *</label><select class="field-input" id="bewFirmaSelect"></select></div>
     <div class="form-field"><label class="field-label">Stellenbezeichnung *</label><input class="field-input" type="text" id="newBewBezeichnung" placeholder="z.B. Senior Financial Controller" /></div>
     <div class="form-row">
       <div class="form-field"><label class="field-label">Datum *</label><input class="field-input" type="date" id="newBewDatum" /></div>
       <div class="form-field">
-        <label class="field-label">Stand *</label>
+        <label class="field-label">Status</label>
         <select class="field-input" id="newBewStand">
           <option value="Offen">Offen</option>
-          <option value="Interview">Interview</option>
-          <option value="Absage">Absage</option>
+          <option value="Abgesagt">Abgesagt</option>
         </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-field">
+        <label class="field-label">Stellenrating</label>
+        <div class="star-rating" id="newBewRating">
+          <span class="star" onclick="setNewBewRating(1)">★</span>
+          <span class="star" onclick="setNewBewRating(2)">★</span>
+          <span class="star" onclick="setNewBewRating(3)">★</span>
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="field-label">Interview</label>
+        <div style="display:flex; gap:12px; margin-top:6px;">
+          <div class="checkbox-row"><input type="checkbox" id="newBewI1" /><label for="newBewI1">Interview 1</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="newBewI2" /><label for="newBewI2">Interview 2</label></div>
+        </div>
       </div>
     </div>
     <div class="form-field"><label class="field-label">Kommentar</label><input class="field-input" type="text" id="newBewKommentar" placeholder="z.B. Referral via LinkedIn, Recruiter: Max Muster" /></div>
@@ -224,6 +259,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink
     </div>
   </div>
 
+  <!-- Toolbar -->
   <div class="toolbar">
     <div class="search-wrap">
       <span class="search-icon">⌕</span>
@@ -232,11 +268,15 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink
     <button class="btn btn-ghost btn-sm" onclick="resetVisited()">↺ Reset Besucht</button>
   </div>
 
+  <!-- Filter tabs -->
   <div class="filter-row">
-    <button class="filter-tab active" onclick="setFilter('all',this)">Alle <span class="filter-count" id="fc-all">0</span></button>
-    <button class="filter-tab" onclick="setFilter('open',this)">Noch nicht besucht <span class="filter-count" id="fc-open">0</span></button>
-    <button class="filter-tab" onclick="setFilter('visited',this)">Besucht <span class="filter-count" id="fc-visited">0</span></button>
-    <button class="filter-tab" onclick="setFilter('applied',this)">Mit Bewerbung <span class="filter-count" id="fc-applied">0</span></button>
+    <button class="filter-tab active" onclick="setFilter("all",this)">Alle <span class="filter-count" id="fc-all">0</span></button>
+    <button class="filter-tab" onclick="setFilter("open",this)">Noch nicht besucht <span class="filter-count" id="fc-open">0</span></button>
+    <button class="filter-tab" onclick="setFilter("visited",this)">Besucht <span class="filter-count" id="fc-visited">0</span></button>
+    <button class="filter-tab" onclick="setFilter("applied",this)">Mit Bewerbung <span class="filter-count" id="fc-applied">0</span></button>
+    <button class="filter-tab" onclick="setFilter("r3",this)">⭐⭐⭐ <span class="filter-count" id="fc-r3">0</span></button>
+    <button class="filter-tab" onclick="setFilter("r2",this)">⭐⭐ <span class="filter-count" id="fc-r2">0</span></button>
+    <button class="filter-tab" onclick="setFilter("r1",this)">⭐ <span class="filter-count" id="fc-r1">0</span></button>
   </div>
 
   <div class="company-list" id="list"></div>
@@ -252,6 +292,14 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink
     </div>
     <div class="form-field"><label class="field-label">URL *</label><input class="field-input" type="url" id="editUrl" /></div>
     <div class="form-field"><label class="field-label">Notiz</label><input class="field-input" type="text" id="editNote" /></div>
+    <div class="form-field">
+      <label class="field-label">Unternehmensrating</label>
+      <div class="star-rating" id="editFirmaRating">
+        <span class="star" onclick="setEditFirmaRating(1)">★</span>
+        <span class="star" onclick="setEditFirmaRating(2)">★</span>
+        <span class="star" onclick="setEditFirmaRating(3)">★</span>
+      </div>
+    </div>
     <div class="modal-actions">
       <button class="btn btn-primary" onclick="saveEdit()">Speichern</button>
       <button class="btn btn-ghost" onclick="closeModal('editModal')">Abbrechen</button>
@@ -268,12 +316,28 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink
     <div class="form-row">
       <div class="form-field"><label class="field-label">Datum *</label><input class="field-input" type="date" id="bewDatum" /></div>
       <div class="form-field">
-        <label class="field-label">Stand *</label>
+        <label class="field-label">Status</label>
         <select class="field-input" id="bewStand">
           <option value="Offen">Offen</option>
-          <option value="Interview">Interview</option>
-          <option value="Absage">Absage</option>
+          <option value="Abgesagt">Abgesagt</option>
         </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-field">
+        <label class="field-label">Stellenrating</label>
+        <div class="star-rating" id="editBewRating">
+          <span class="star" onclick="setEditBewRating(1)">★</span>
+          <span class="star" onclick="setEditBewRating(2)">★</span>
+          <span class="star" onclick="setEditBewRating(3)">★</span>
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="field-label">Interview</label>
+        <div style="display:flex; gap:12px; margin-top:6px;">
+          <div class="checkbox-row"><input type="checkbox" id="bewI1" /><label for="bewI1">Interview 1</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="bewI2" /><label for="bewI2">Interview 2</label></div>
+        </div>
       </div>
     </div>
     <div class="form-field"><label class="field-label">Kommentar</label><input class="field-input" type="text" id="bewKommentar" /></div>
@@ -285,22 +349,36 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink
 </div>
 
 <script>
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlsKp_3cBSq-gBONW-dN-f7XxT8Y3PAbb3xhHcPvXliTaKa-Wa1MibmuyCmQ82uRBBeQ/exec';
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzlsKp_3cBSq-gBONW-dN-f7XxT8Y3PAbb3xhHcPvXliTaKa-Wa1MibmuyCmQ82uRBBeQ/exec";
 
 let companies = [], bewerbungen = [];
-let filter = 'all', editId = null, bewEditId = null, bewFirmaId = null;
+let filter = "all", editId = null, bewEditId = null, bewFirmaId = null;
 let openDropdowns = new Set();
+let newFirmaRating = 0, newBewRating = 0, editFirmaRating = 0, editBewRating = 0;
 
-function showStatus(msg, type='loading', spinner=false) {
-  const bar = document.getElementById('statusBar');
+// ── Status ────────────────────────────────────────────────────────────────
+function showStatus(msg, type="loading", spinner=false) {
+  const bar = document.getElementById("statusBar");
   bar.className = `status-bar ${type}`;
-  bar.style.display = 'flex';
-  bar.innerHTML = (spinner ? '<div class="spinner"></div>' : '') + `<span>${msg}</span>`;
+  bar.style.display = "flex";
+  bar.innerHTML = (spinner ? "<div class=\"spinner\"></div>" : "") + `<span>${msg}</span>`;
 }
-function hideStatus() { document.getElementById('statusBar').style.display = 'none'; }
+function hideStatus() { document.getElementById("statusBar").style.display = "none"; }
 
+// ── Star rating helpers ───────────────────────────────────────────────────
+function renderStars(containerId, value) {
+  const stars = document.querySelectorAll(`#${containerId} .star`);
+  stars.forEach((s, i) => s.classList.toggle("filled", i < value));
+}
+function setNewFirmaRating(v) { newFirmaRating = v; renderStars("newFirmaRating", v); }
+function setEditFirmaRating(v) { editFirmaRating = v; renderStars("editFirmaRating", v); }
+function setNewBewRating(v) { newBewRating = v; renderStars("newBewRating", v); }
+function setEditBewRating(v) { editBewRating = v; renderStars("editBewRating", v); }
+function starsHTML(n) { return n > 0 ? "★".repeat(n) + "☆".repeat(3-n) : ""; }
+
+// ── Load ──────────────────────────────────────────────────────────────────
 async function loadAll() {
-  showStatus('Daten werden geladen…', 'loading', true);
+  showStatus("Daten werden geladen…", "loading", true);
   try {
     const res  = await fetch(SCRIPT_URL);
     const json = await res.json();
@@ -309,325 +387,334 @@ async function loadAll() {
     hideStatus();
     render();
   } catch(e) {
-    showStatus(`Fehler beim Laden: ${e.message}`, 'error');
+    showStatus(`Fehler beim Laden: ${e.message}`, "error");
   }
 }
 
+// ── Write ─────────────────────────────────────────────────────────────────
 async function writeCompanies() {
-  const values = companies.map(c => [c.id, c.name, c.sector, c.url, c.note, c.visited || '']);
-  const fd = new FormData();
-  fd.append('sheet', 'Tabellenblatt1');
-  fd.append('data', JSON.stringify(values));
-  await fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', body:fd });
+  const values = companies.map(c => [c.id, c.name, c.sector, c.url, c.note, c.visited||"", c.rating||0]);
+  const fd = new FormData(); fd.append("sheet","Tabellenblatt1"); fd.append("data",JSON.stringify(values));
+  await fetch(SCRIPT_URL, {method:"POST", mode:"no-cors", body:fd});
 }
-
 async function writeBewerbungen() {
-  const values = bewerbungen.map(b => [b.id, b.firma_id, b.bezeichnung, b.datum, b.stand, b.kommentar || '']);
-  const fd = new FormData();
-  fd.append('sheet', 'Bewerbungen');
-  fd.append('data', JSON.stringify(values));
-  await fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', body:fd });
+  const values = bewerbungen.map(b => [b.id, b.firma_id, b.bezeichnung, b.datum, b.stand, b.kommentar||"", b.rating||0, b.interview1?1:0, b.interview2?1:0]);
+  const fd = new FormData(); fd.append("sheet","Bewerbungen"); fd.append("data",JSON.stringify(values));
+  await fetch(SCRIPT_URL, {method:"POST", mode:"no-cors", body:fd});
 }
 
 function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2,5); }
-function fmt(iso) { if (!iso) return ''; try { return new Date(iso).toLocaleDateString('de-CH',{day:'2-digit',month:'2-digit',year:'numeric'}); } catch{return iso;} }
+function fmt(iso) { if (!iso) return ""; try { return new Date(iso).toLocaleDateString("de-CH",{day:"2-digit",month:"2-digit",year:"numeric"}); } catch{return iso;} }
 
-// ── Companies ─────────────────────────────────────────────────────────────
+// ── Add company ───────────────────────────────────────────────────────────
 function toggleAdd() {
-  const p = document.getElementById('addPanel');
-  document.getElementById('addBewPanel').classList.remove('open');
-  document.getElementById('addBewBtn').textContent = '+ Bewerbung';
-  const isOpen = p.classList.toggle('open');
-  document.getElementById('addBtn').textContent = isOpen ? '✕ Schliessen' : '+ Unternehmen';
-  if (isOpen) setTimeout(()=>document.getElementById('newName').focus(),50);
-}
-
-function toggleAddBew() {
-  const p = document.getElementById('addBewPanel');
-  document.getElementById('addPanel').classList.remove('open');
-  document.getElementById('addBtn').textContent = '+ Unternehmen';
-  const isOpen = p.classList.toggle('open');
-  document.getElementById('addBewBtn').textContent = isOpen ? '✕ Schliessen' : '+ Bewerbung';
-  if (isOpen) {
-    // Populate firma select
-    const sel = document.getElementById('bewFirmaSelect');
-    sel.innerHTML = companies.sort((a,b)=>a.name.localeCompare(b.name,'de')).map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
-    document.getElementById('newBewDatum').value = new Date().toISOString().slice(0,10);
-    setTimeout(()=>document.getElementById('bewFirmaSelect').focus(),50);
-  }
+  const p = document.getElementById("addPanel");
+  document.getElementById("addBewPanel").classList.remove("open");
+  document.getElementById("addBewBtn").textContent = "+ Bewerbung";
+  const isOpen = p.classList.toggle("open");
+  document.getElementById("addBtn").textContent = isOpen ? "✕ Schliessen" : "+ Unternehmen";
+  if (isOpen) { newFirmaRating = 0; renderStars("newFirmaRating", 0); setTimeout(()=>document.getElementById("newName").focus(),50); }
 }
 
 async function addCompany() {
-  const name = document.getElementById('newName').value.trim();
-  const url  = document.getElementById('newUrl').value.trim();
-  if (!name||!url) { alert('Name und URL sind Pflichtfelder.'); return; }
-  const btn = document.getElementById('addSaveBtn');
-  btn.disabled=true; btn.textContent='Speichern…';
-  companies.push({ id:genId(), name, sector:document.getElementById('newSector').value.trim(), url, note:document.getElementById('newNote').value.trim(), visited:null });
+  const name = document.getElementById("newName").value.trim();
+  const url  = document.getElementById("newUrl").value.trim();
+  if (!name||!url) { alert("Name und URL sind Pflichtfelder."); return; }
+  const btn = document.getElementById("addSaveBtn");
+  btn.disabled=true; btn.textContent="Speichern…";
+  companies.push({id:genId(), name, sector:document.getElementById("newSector").value.trim(), url, note:document.getElementById("newNote").value.trim(), visited:null, rating:newFirmaRating});
   await writeCompanies();
-  ['newName','newSector','newUrl','newNote'].forEach(id=>document.getElementById(id).value='');
+  ["newName","newSector","newUrl","newNote"].forEach(id=>document.getElementById(id).value="");
   toggleAdd(); render();
-  setTimeout(async()=>{ await loadAll(); },2000);
-  btn.disabled=false; btn.textContent='Hinzufügen';
-}
-
-async function addBewerbungStandalone() {
-  const firmaId     = document.getElementById('bewFirmaSelect').value;
-  const bezeichnung = document.getElementById('newBewBezeichnung').value.trim();
-  const datum       = document.getElementById('newBewDatum').value;
-  const stand       = document.getElementById('newBewStand').value;
-  const kommentar   = document.getElementById('newBewKommentar').value.trim();
-  if (!firmaId||!bezeichnung||!datum) { alert('Unternehmen, Bezeichnung und Datum sind Pflichtfelder.'); return; }
-  const btn = document.getElementById('addBewSaveBtn');
-  btn.disabled=true; btn.textContent='Speichern…';
-  bewerbungen.push({ id:genId(), firma_id:firmaId, bezeichnung, datum, stand, kommentar });
-  openDropdowns.add(firmaId);
-  await writeBewerbungen();
-  ['newBewBezeichnung','newBewKommentar'].forEach(id=>document.getElementById(id).value='');
-  toggleAddBew(); render();
-  setTimeout(async()=>{ await loadAll(); },2000);
-  btn.disabled=false; btn.textContent='Bewerbung speichern';
+  setTimeout(async()=>{ await loadAll(); }, 2000);
+  btn.disabled=false; btn.textContent="Hinzufügen";
 }
 
 async function markVisited(id) {
   const c = companies.find(x=>x.id===id);
   if (!c) return;
   c.visited = new Date().toISOString();
-  render();
-  await writeCompanies();
-  setTimeout(async()=>{ await loadAll(); },2000);
+  render(); await writeCompanies();
+  setTimeout(async()=>{ await loadAll(); }, 2000);
 }
 
 async function removeCompany(id) {
-  if (!confirm('Unternehmen und alle zugehörigen Bewerbungen entfernen?')) return;
+  if (!confirm("Unternehmen und alle zugehörigen Bewerbungen entfernen?")) return;
   companies   = companies.filter(x=>x.id!==id);
   bewerbungen = bewerbungen.filter(b=>b.firma_id!==id);
-  render();
-  await writeCompanies();
-  await writeBewerbungen();
-  setTimeout(async()=>{ await loadAll(); },2000);
+  render(); await writeCompanies(); await writeBewerbungen();
+  setTimeout(async()=>{ await loadAll(); }, 2000);
 }
 
 async function resetVisited() {
-  if (!confirm('Alle Besucht-Markierungen zurücksetzen?')) return;
+  if (!confirm("Alle Besucht-Markierungen zurücksetzen?")) return;
   companies.forEach(c=>c.visited=null);
-  render();
-  await writeCompanies();
+  render(); await writeCompanies();
 }
 
+// ── Edit company ──────────────────────────────────────────────────────────
 function openEdit(id) {
   const c = companies.find(x=>x.id===id);
   if (!c) return;
   editId = id;
-  document.getElementById('editName').value   = c.name;
-  document.getElementById('editSector').value = c.sector||'';
-  document.getElementById('editUrl').value    = c.url;
-  document.getElementById('editNote').value   = c.note||'';
-  document.getElementById('editModal').classList.add('open');
-  setTimeout(()=>document.getElementById('editName').focus(),50);
+  editFirmaRating = parseInt(c.rating)||0;
+  document.getElementById("editName").value   = c.name;
+  document.getElementById("editSector").value = c.sector||"";
+  document.getElementById("editUrl").value    = c.url;
+  document.getElementById("editNote").value   = c.note||"";
+  renderStars("editFirmaRating", editFirmaRating);
+  document.getElementById("editModal").classList.add("open");
+  setTimeout(()=>document.getElementById("editName").focus(),50);
 }
 
 async function saveEdit() {
-  const name = document.getElementById('editName').value.trim();
-  const url  = document.getElementById('editUrl').value.trim();
-  if (!name||!url) { alert('Name und URL sind Pflichtfelder.'); return; }
+  const name = document.getElementById("editName").value.trim();
+  const url  = document.getElementById("editUrl").value.trim();
+  if (!name||!url) { alert("Name und URL sind Pflichtfelder."); return; }
   const c = companies.find(x=>x.id===editId);
   if (c) {
-    c.name=name; c.sector=document.getElementById('editSector').value.trim();
-    c.url=url; c.note=document.getElementById('editNote').value.trim();
-    closeModal('editModal'); render();
+    c.name=name; c.sector=document.getElementById("editSector").value.trim();
+    c.url=url; c.note=document.getElementById("editNote").value.trim();
+    c.rating=editFirmaRating;
+    closeModal("editModal"); render();
     await writeCompanies();
-    setTimeout(async()=>{ await loadAll(); },2000);
+    setTimeout(async()=>{ await loadAll(); }, 2000);
   }
+}
+
+// ── Add Bewerbung ─────────────────────────────────────────────────────────
+function toggleAddBew() {
+  const p = document.getElementById("addBewPanel");
+  document.getElementById("addPanel").classList.remove("open");
+  document.getElementById("addBtn").textContent = "+ Unternehmen";
+  const isOpen = p.classList.toggle("open");
+  document.getElementById("addBewBtn").textContent = isOpen ? "✕ Schliessen" : "+ Bewerbung";
+  if (isOpen) {
+    const sel = document.getElementById("bewFirmaSelect");
+    sel.innerHTML = companies.sort((a,b)=>a.name.localeCompare(b.name,"de")).map(c=>`<option value="${c.id}">${c.name}${c.rating>0?" "+"★".repeat(c.rating):""}</option>`).join("");
+    document.getElementById("newBewDatum").value = new Date().toISOString().slice(0,10);
+    document.getElementById("newBewI1").checked = false;
+    document.getElementById("newBewI2").checked = false;
+    newBewRating = 0; renderStars("newBewRating", 0);
+  }
+}
+
+async function addBewerbungStandalone() {
+  const firmaId     = document.getElementById("bewFirmaSelect").value;
+  const bezeichnung = document.getElementById("newBewBezeichnung").value.trim();
+  const datum       = document.getElementById("newBewDatum").value;
+  const stand       = document.getElementById("newBewStand").value;
+  const kommentar   = document.getElementById("newBewKommentar").value.trim();
+  const i1          = document.getElementById("newBewI1").checked;
+  const i2          = document.getElementById("newBewI2").checked;
+  if (!firmaId||!bezeichnung||!datum) { alert("Unternehmen, Bezeichnung und Datum sind Pflichtfelder."); return; }
+  const btn = document.getElementById("addBewSaveBtn");
+  btn.disabled=true; btn.textContent="Speichern…";
+  bewerbungen.push({id:genId(), firma_id:firmaId, bezeichnung, datum, stand, kommentar, rating:newBewRating, interview1:i1, interview2:i2});
+  openDropdowns.add(firmaId);
+  await writeBewerbungen();
+  ["newBewBezeichnung","newBewKommentar"].forEach(id=>document.getElementById(id).value="");
+  toggleAddBew(); render();
+  setTimeout(async()=>{ await loadAll(); }, 2000);
+  btn.disabled=false; btn.textContent="Bewerbung speichern";
 }
 
 // ── Bewerbungen ───────────────────────────────────────────────────────────
 function toggleDropdown(firmaId) {
-  if (openDropdowns.has(firmaId)) { openDropdowns.delete(firmaId); }
-  else { openDropdowns.add(firmaId); }
+  if (openDropdowns.has(firmaId)) openDropdowns.delete(firmaId);
+  else openDropdowns.add(firmaId);
   render();
 }
 
 function openBewModal(firmaId, bewId) {
-  bewFirmaId = firmaId;
-  bewEditId  = bewId;
-  const firma = companies.find(x=>x.id===firmaId);
-  document.getElementById('bewModalSub').textContent = firma ? firma.name : '';
-  const b = bewerbungen.find(x=>x.id===bewId);
-  if (b) {
-    document.getElementById('bewBezeichnung').value = b.bezeichnung||'';
-    document.getElementById('bewDatum').value       = b.datum||'';
-    document.getElementById('bewStand').value       = b.stand||'Offen';
-    document.getElementById('bewKommentar').value   = b.kommentar||'';
+  if (!bewId || bewId === "null") {
+    const p = document.getElementById("addBewPanel");
+    document.getElementById("addPanel").classList.remove("open");
+    document.getElementById("addBtn").textContent = "+ Unternehmen";
+    p.classList.add("open");
+    document.getElementById("addBewBtn").textContent = "✕ Schliessen";
+    const sel = document.getElementById("bewFirmaSelect");
+    sel.innerHTML = companies.sort((a,b)=>a.name.localeCompare(b.name,"de")).map(c=>`<option value="${c.id}" ${c.id===firmaId?"selected":""}>${c.name}${c.rating>0?" "+"★".repeat(c.rating):""}</option>`).join("");
+    document.getElementById("newBewDatum").value = new Date().toISOString().slice(0,10);
+    document.getElementById("newBewI1").checked = false;
+    document.getElementById("newBewI2").checked = false;
+    newBewRating = 0; renderStars("newBewRating", 0);
+    openDropdowns.add(firmaId);
+    window.scrollTo({top:0, behavior:"smooth"});
+    return;
   }
-  document.getElementById('bewModal').classList.add('open');
-  setTimeout(()=>document.getElementById('bewBezeichnung').focus(),50);
+  bewFirmaId = firmaId; bewEditId = bewId;
+  const firma = companies.find(x=>x.id===firmaId);
+  const b = bewerbungen.find(x=>x.id===bewId);
+  document.getElementById("bewModalSub").textContent = firma ? firma.name : "";
+  if (b) {
+    editBewRating = parseInt(b.rating)||0;
+    document.getElementById("bewBezeichnung").value = b.bezeichnung||"";
+    document.getElementById("bewDatum").value       = b.datum||"";
+    document.getElementById("bewStand").value       = b.stand||"Offen";
+    document.getElementById("bewKommentar").value   = b.kommentar||"";
+    document.getElementById("bewI1").checked        = !!b.interview1;
+    document.getElementById("bewI2").checked        = !!b.interview2;
+    renderStars("editBewRating", editBewRating);
+  }
+  document.getElementById("bewModal").classList.add("open");
+  setTimeout(()=>document.getElementById("bewBezeichnung").focus(),50);
 }
 
 async function saveBewerbung() {
-  const bezeichnung = document.getElementById('bewBezeichnung').value.trim();
-  const datum       = document.getElementById('bewDatum').value;
-  if (!bezeichnung||!datum) { alert('Bezeichnung und Datum sind Pflichtfelder.'); return; }
-  const btn = document.getElementById('bewSaveBtn');
-  btn.disabled=true; btn.textContent='Speichern…';
+  const bezeichnung = document.getElementById("bewBezeichnung").value.trim();
+  const datum       = document.getElementById("bewDatum").value;
+  if (!bezeichnung||!datum) { alert("Bezeichnung und Datum sind Pflichtfelder."); return; }
+  const btn = document.getElementById("bewSaveBtn");
+  btn.disabled=true; btn.textContent="Speichern…";
   const b = bewerbungen.find(x=>x.id===bewEditId);
   if (b) {
     b.bezeichnung=bezeichnung; b.datum=datum;
-    b.stand=document.getElementById('bewStand').value;
-    b.kommentar=document.getElementById('bewKommentar').value.trim();
-    closeModal('bewModal'); render();
+    b.stand=document.getElementById("bewStand").value;
+    b.kommentar=document.getElementById("bewKommentar").value.trim();
+    b.rating=editBewRating;
+    b.interview1=document.getElementById("bewI1").checked;
+    b.interview2=document.getElementById("bewI2").checked;
+    closeModal("bewModal"); render();
     await writeBewerbungen();
-    setTimeout(async()=>{ await loadAll(); },2000);
+    setTimeout(async()=>{ await loadAll(); }, 2000);
   }
-  btn.disabled=false; btn.textContent='Speichern';
+  btn.disabled=false; btn.textContent="Speichern";
 }
 
 async function removeBewerbung(id) {
-  if (!confirm('Bewerbung entfernen?')) return;
+  if (!confirm("Bewerbung entfernen?")) return;
   bewerbungen = bewerbungen.filter(x=>x.id!==id);
-  render();
-  await writeBewerbungen();
-  setTimeout(async()=>{ await loadAll(); },2000);
+  render(); await writeBewerbungen();
+  setTimeout(async()=>{ await loadAll(); }, 2000);
 }
 
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove("open"); }
 function closeModalOutside(e,id) { if(e.target===document.getElementById(id)) closeModal(id); }
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') { closeModal('editModal'); closeModal('bewModal'); } });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") { closeModal("editModal"); closeModal("bewModal"); } });
 
+// ── Filter & render ───────────────────────────────────────────────────────
 function setFilter(f,el) {
   filter=f;
-  document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
+  document.querySelectorAll(".filter-tab").forEach(t=>t.classList.remove("active"));
+  el.classList.add("active");
   render();
 }
 
 function render() {
-  const q = document.getElementById('search').value.toLowerCase();
-  let filtered = companies.filter(c=>c.name.toLowerCase().includes(q)||(c.sector||'').toLowerCase().includes(q));
+  const q = document.getElementById("search").value.toLowerCase();
+  let filtered = companies.filter(c=>c.name.toLowerCase().includes(q)||(c.sector||"").toLowerCase().includes(q));
 
-  const all=filtered.length, vis=filtered.filter(c=>c.visited).length, open=all-vis;
+  const all=filtered.length, vis=filtered.filter(c=>c.visited).length;
   const applied=filtered.filter(c=>bewerbungen.some(b=>b.firma_id===c.id)).length;
+  const r3=filtered.filter(c=>parseInt(c.rating||0)===3).length;
+  const r2=filtered.filter(c=>parseInt(c.rating||0)===2).length;
+  const r1=filtered.filter(c=>parseInt(c.rating||0)===1).length;
 
-  document.getElementById('fc-all').textContent=all;
-  document.getElementById('fc-open').textContent=open;
-  document.getElementById('fc-visited').textContent=vis;
-  document.getElementById('fc-applied').textContent=applied;
-  document.getElementById('statTotal').textContent=companies.length;
-  document.getElementById('statBew').textContent=bewerbungen.length;
-  document.getElementById('statOpen').textContent=bewerbungen.filter(b=>b.stand==='Offen').length;
+  document.getElementById("fc-all").textContent=all;
+  document.getElementById("fc-open").textContent=all-vis;
+  document.getElementById("fc-visited").textContent=vis;
+  document.getElementById("fc-applied").textContent=applied;
+  document.getElementById("fc-r3").textContent=r3;
+  document.getElementById("fc-r2").textContent=r2;
+  document.getElementById("fc-r1").textContent=r1;
+  document.getElementById("statTotal").textContent=companies.length;
+  document.getElementById("statBew").textContent=bewerbungen.length;
+  document.getElementById("statOpen").textContent=bewerbungen.filter(b=>b.stand==="Offen").length;
 
-  if (filter==='visited') filtered=filtered.filter(c=>c.visited);
-  if (filter==='open')    filtered=filtered.filter(c=>!c.visited);
-  if (filter==='applied') filtered=filtered.filter(c=>bewerbungen.some(b=>b.firma_id===c.id));
+  if (filter==="visited") filtered=filtered.filter(c=>c.visited);
+  if (filter==="open")    filtered=filtered.filter(c=>!c.visited);
+  if (filter==="applied") filtered=filtered.filter(c=>bewerbungen.some(b=>b.firma_id===c.id));
+  if (filter==="r3") filtered=filtered.filter(c=>parseInt(c.rating||0)===3);
+  if (filter==="r2") filtered=filtered.filter(c=>parseInt(c.rating||0)===2);
+  if (filter==="r1") filtered=filtered.filter(c=>parseInt(c.rating||0)===1);
 
+  // Sort: by rating desc, then unvisited first, then name
   filtered.sort((a,b)=>{
+    const ra=parseInt(b.rating||0)-parseInt(a.rating||0);
+    if (ra!==0) return ra;
     if(!!a.visited!==!!b.visited) return a.visited?1:-1;
-    return a.name.localeCompare(b.name,'de');
+    return a.name.localeCompare(b.name,"de");
   });
 
-  const list=document.getElementById('list');
+  const list=document.getElementById("list");
   if (!filtered.length) {
     list.innerHTML=`<div class="empty"><div class="empty-icon">◎</div><div class="empty-title">Keine Einträge gefunden</div><div class="empty-sub">Passe die Suche an oder füge ein neues Unternehmen hinzu.</div></div>`;
     return;
   }
-
-  const openItems=filtered.filter(c=>!c.visited);
-  const visItems =filtered.filter(c=>c.visited);
-  let html='';
-  if (openItems.length&&visItems.length) html+=`<div class="section-label">Noch nicht besucht — ${openItems.length}</div>`;
-  openItems.forEach(c=>{ html+=cardHTML(c); });
-  if (visItems.length&&openItems.length) html+=`<div class="section-label">Besucht — ${visItems.length}</div>`;
-  visItems.forEach(c=>{ html+=cardHTML(c); });
-  list.innerHTML=html;
+  list.innerHTML = filtered.map(c=>cardHTML(c)).join("");
 }
 
 function cardHTML(c) {
-  const bewList  = bewerbungen.filter(b=>b.firma_id===c.id);
-  const isOpen   = openDropdowns.has(c.id);
-  const total    = bewList.length;
-  const offenCount = bewList.filter(b=>b.stand==='Offen').length;
+  const bewList    = bewerbungen.filter(b=>b.firma_id===c.id);
+  const isOpen     = openDropdowns.has(c.id);
+  const total      = bewList.length;
+  const offenCount = bewList.filter(b=>b.stand==="Offen").length;
+  const rating     = parseInt(c.rating||0);
 
-  const standBadge = s => {
-    const cls = s==='Offen'?'offen':s==='Interview'?'interview':'absage';
-    return `<span class="stand-badge ${cls}">${s}</span>`;
-  };
+  const standCls = s => s==="Offen"?"offen":s==="Abgesagt"?"abgesagt":"interview";
 
-  const bewItems = bewList.map(b=>`
-    <div class="bew-item stand-${(b.stand||'Offen').toLowerCase()}">
+  const bewItems = bewList.map(b=>{
+    const cls = standCls(b.stand||"Offen");
+    const bewRating = parseInt(b.rating||0);
+    const i1 = b.interview1; const i2 = b.interview2;
+    return `
+    <div class="bew-item stand-${cls}">
       <div>
-        <div class="bew-bezeichnung">${b.bezeichnung}</div>
+        <div class="bew-bezeichnung">${b.bezeichnung}${bewRating>0?` <span style="color:#F59E0B;font-size:11px">${"★".repeat(bewRating)}</span>`:""}</div>
         <div class="bew-meta">
-          ${standBadge(b.stand||'Offen')}
+          <span class="stand-badge ${cls}">${b.stand||"Offen"}</span>
+          ${i1?`<span class="interview-badge">I1 ✓</span>`:""}
+          ${i2?`<span class="interview-badge">I2 ✓</span>`:""}
           <span class="bew-datum">${fmt(b.datum)}</span>
-          ${b.kommentar?`<span class="bew-kommentar">${b.kommentar}</span>`:''}
+          ${b.kommentar?`<span class="bew-kommentar">${b.kommentar}</span>`:""}
         </div>
       </div>
       <div class="bew-actions">
         <button class="icon-btn" onclick="openBewModal('${c.id}','${b.id}')" title="Bearbeiten">✎</button>
         <button class="icon-btn del" onclick="removeBewerbung('${b.id}')" title="Löschen">✕</button>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join("");
 
-  // Dropdown label with counts
-  let dropdownLabel = 'Bewerbungen';
-  let badges = '';
-  if (total > 0) {
+  let badges = "";
+  if (total>0) {
     badges += `<span class="bew-count-badge">${total}</span>`;
-    if (offenCount > 0) badges += `<span class="bew-open-badge">${offenCount} offen</span>`;
+    if (offenCount>0) badges += `<span class="bew-open-badge">${offenCount} offen</span>`;
   }
 
   return `
-    <div class="company-card ${c.visited?'visited':''}">
-      <div class="company-row">
-        <div class="row-left">
-          <div class="row-indicator"></div>
-          <div class="row-info">
-            <div class="row-name">${c.name}</div>
-            <div class="row-meta">
-              ${c.sector?`<span class="row-sector">${c.sector}</span>`:''}
-              ${c.visited?`<span class="visited-badge">✓ ${fmt(c.visited)}</span>`:''}
-              ${c.note?`<span class="row-note">— ${c.note}</span>`:''}
-            </div>
+  <div class="company-card ${c.visited?"visited":""}">
+    <div class="company-row">
+      <div class="row-left">
+        <div class="row-indicator"></div>
+        <div class="row-info">
+          <div class="row-name">${c.name}${rating>0?` <span style="color:#F59E0B;font-size:13px">${"★".repeat(rating)}</span>`:""}</div>
+          <div class="row-meta">
+            ${c.sector?`<span class="row-sector">${c.sector}</span>`:""}
+            ${c.visited?`<span class="visited-badge">✓ ${fmt(c.visited)}</span>`:""}
+            ${c.note?`<span class="row-note">— ${c.note}</span>`:""}
           </div>
         </div>
-        <div class="row-actions">
-          <a href="${c.url}" target="_blank" rel="noopener" class="btn btn-primary visit-btn" onclick="markVisited('${c.id}')">↗ Öffnen</a>
-          <button class="icon-btn" onclick="openEdit('${c.id}')" title="Bearbeiten">✎</button>
-          <button class="icon-btn del" onclick="removeCompany('${c.id}')" title="Entfernen">✕</button>
-        </div>
       </div>
-      <div class="bewerbungen-section">
-        <button class="bewerbungen-toggle" onclick="toggleDropdown('${c.id}')">
-          <span class="toggle-arrow ${isOpen?'open':''}">▶</span>
-          ${dropdownLabel} ${badges}
-        </button>
-        <div class="bewerbungen-list ${isOpen?'open':''}">
-          ${bewItems}
-          <button class="add-bew-btn" onclick="openBewModal('${c.id}', null); bewFirmaId='${c.id}'">+ Bewerbung erfassen</button>
-        </div>
+      <div class="row-actions">
+        <a href="${c.url}" target="_blank" rel="noopener" class="btn btn-primary visit-btn" onclick="markVisited('${c.id}')">↗ Öffnen</a>
+        <button class="icon-btn" onclick="openEdit('${c.id}')" title="Bearbeiten">✎</button>
+        <button class="icon-btn del" onclick="removeCompany('${c.id}')" title="Entfernen">✕</button>
       </div>
-    </div>`;
+    </div>
+    <div class="bewerbungen-section">
+      <button class="bewerbungen-toggle" onclick="toggleDropdown('${c.id}')">
+        <span class="toggle-arrow ${isOpen?"open":""}">▶</span>
+        Bewerbungen ${badges}
+      </button>
+      <div class="bewerbungen-list ${isOpen?"open":""}">
+        ${bewItems}
+        <button class="add-bew-btn" onclick="openBewModal('${c.id}', null)">+ Bewerbung erfassen</button>
+      </div>
+    </div>
+  </div>`;
 }
-
-// Fix: openBewModal called from dropdown needs to handle null bewId
-const _origOpenBewModal = openBewModal;
-window.openBewModal = function(firmaId, bewId) {
-  if (bewId === null || bewId === 'null') {
-    // Open standalone panel pre-selected to this firma
-    const p = document.getElementById('addBewPanel');
-    document.getElementById('addPanel').classList.remove('open');
-    document.getElementById('addBtn').textContent = '+ Unternehmen';
-    p.classList.add('open');
-    document.getElementById('addBewBtn').textContent = '✕ Schliessen';
-    const sel = document.getElementById('bewFirmaSelect');
-    sel.innerHTML = companies.sort((a,b)=>a.name.localeCompare(b.name,'de')).map(c=>`<option value="${c.id}" ${c.id===firmaId?'selected':''}>${c.name}</option>`).join('');
-    document.getElementById('newBewDatum').value = new Date().toISOString().slice(0,10);
-    openDropdowns.add(firmaId);
-    window.scrollTo({top:0, behavior:'smooth'});
-  } else {
-    _origOpenBewModal(firmaId, bewId);
-  }
-};
 
 loadAll();
 </script>
