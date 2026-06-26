@@ -405,6 +405,18 @@ async function writeBewerbungen() {
 
 function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2,5); }
 function fmt(iso) { if (!iso) return ""; try { return new Date(iso).toLocaleDateString("de-CH",{day:"2-digit",month:"2-digit",year:"numeric"}); } catch{return iso;} }
+function toInputDate(val) {
+  if (!val) return "";
+  // Already YYYY-MM-DD
+  if (/^\d{4}-\d{2}-\d{2}$/.test(val)) return val;
+  // DD.MM.YYYY format
+  if (/^\d{2}\.\d{2}\.\d{4}$/.test(val)) {
+    const [d,m,y] = val.split(".");
+    return `${y}-${m}-${d}`;
+  }
+  // ISO string with time
+  try { return new Date(val).toISOString().slice(0,10); } catch { return ""; }
+}
 
 // ── Add company ───────────────────────────────────────────────────────────
 function toggleAdd() {
@@ -550,7 +562,7 @@ function openBewModal(firmaId, bewId) {
   if (b) {
     editBewRating = parseInt(b.rating)||0;
     document.getElementById("bewBezeichnung").value = b.bezeichnung||"";
-    document.getElementById("bewDatum").value       = b.datum||"";
+    document.getElementById("bewDatum").value       = toInputDate(b.datum);
     document.getElementById("bewStand").value       = b.stand||"Offen";
     document.getElementById("bewKommentar").value   = b.kommentar||"";
     document.getElementById("bewI1").checked        = !!b.interview1;
